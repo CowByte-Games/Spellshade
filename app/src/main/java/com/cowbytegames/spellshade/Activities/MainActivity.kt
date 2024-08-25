@@ -56,18 +56,9 @@ class MainActivity : ComponentActivity() {
             constraintSet.clear(boardView.id, ConstraintSet.END)
             constraintSet.clear(boardView.id, ConstraintSet.BOTTOM)
 
-            // Set constraints based on the orientation
-            if (resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT) {
-                // Portrait mode: Position at the top of the screen, centered horizontally
-                constraintSet.connect(boardView.id, ConstraintSet.TOP, ConstraintSet.PARENT_ID, ConstraintSet.TOP, marginInPx)
-                constraintSet.connect(boardView.id, ConstraintSet.START, ConstraintSet.PARENT_ID, ConstraintSet.START, marginInPx)
-                constraintSet.connect(boardView.id, ConstraintSet.END, ConstraintSet.PARENT_ID, ConstraintSet.END, marginInPx)
-            } else if (resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
-                // Landscape mode: Position at the left of the screen, centered vertically
-                constraintSet.connect(boardView.id, ConstraintSet.START, ConstraintSet.PARENT_ID, ConstraintSet.START, marginInPx)
-                constraintSet.connect(boardView.id, ConstraintSet.TOP, ConstraintSet.PARENT_ID, ConstraintSet.TOP, marginInPx)
-                constraintSet.connect(boardView.id, ConstraintSet.BOTTOM, ConstraintSet.PARENT_ID, ConstraintSet.BOTTOM, marginInPx)
-            }
+            constraintSet.connect(boardView.id, ConstraintSet.TOP, ConstraintSet.PARENT_ID, ConstraintSet.TOP, marginInPx)
+            constraintSet.connect(boardView.id, ConstraintSet.START, ConstraintSet.PARENT_ID, ConstraintSet.START, marginInPx)
+            constraintSet.connect(boardView.id, ConstraintSet.END, ConstraintSet.PARENT_ID, ConstraintSet.END, marginInPx)
 
             constraintSet.applyTo(constraintLayout)
         }

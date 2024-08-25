@@ -13,12 +13,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Spellshade"
-        tools:targetApi="31">
+        tools:targetApi="31" >
+        <activity
+            android:name=".Activities.LoginActivity"
+            android:screenOrientation="portrait"
+            android:exported="false" />
         <activity
             android:name=".Activities.MainActivity"
+            android:screenOrientation="portrait"
             android:exported="true"
             android:label="@string/app_name"
-            android:theme="@style/Theme.Spellshade">
+            android:theme="@style/Theme.Spellshade" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
