@@ -18,6 +18,10 @@ import com.cowbytegames.spellshade.ui.theme.SpellshadeTheme
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        renderLayout()
+    }
+
+    private fun renderLayout() {
         setContentView(R.layout.activity_main)
         val boardView = findViewById<View>(R.id.board)
         val rootView = findViewById<ViewGroup>(R.id.root_view) // Use the ID of the parent layout
