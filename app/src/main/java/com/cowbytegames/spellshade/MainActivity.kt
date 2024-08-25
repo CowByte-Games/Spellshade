@@ -1,6 +1,8 @@
 package com.cowbytegames.spellshade
 
 import android.os.Bundle
+import android.view.View
+import android.view.ViewGroup
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -16,16 +18,19 @@ import com.cowbytegames.spellshade.ui.theme.SpellshadeTheme
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        setContent {
-            SpellshadeTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
-                }
-            }
+        setContentView(R.layout.activity_main)
+        val boardView = findViewById<View>(R.id.board)
+        val rootView = findViewById<ViewGroup>(R.id.root_view) // Use the ID of the parent layout
+
+        rootView.post {
+            val width = rootView.width
+            val height = rootView.height
+            val size = minOf(width, height)
+
+            val layoutParams = boardView.layoutParams
+            layoutParams.width = size
+            layoutParams.height = size
+            boardView.layoutParams = layoutParams
         }
     }
 }
