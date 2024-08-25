@@ -50,7 +50,6 @@ class MainActivity : ComponentActivity() {
             val constraintSet = ConstraintSet()
             constraintSet.clone(constraintLayout)
 
-            // Reset any previous constraints
             constraintSet.clear(boardView.id, ConstraintSet.TOP)
             constraintSet.clear(boardView.id, ConstraintSet.START)
             constraintSet.clear(boardView.id, ConstraintSet.END)
