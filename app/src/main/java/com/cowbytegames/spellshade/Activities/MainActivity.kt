@@ -19,6 +19,11 @@ class MainActivity : ComponentActivity() {
 
     private fun renderLayout() {
         setContentView(R.layout.activity_main)
+        renderBoard()
+        renderPieces()
+    }
+
+    private fun renderBoard() {
         val boardView = findViewById<View>(R.id.board)
         val rootView = findViewById<ViewGroup>(R.id.root_view) // Use the ID of the parent layout
 
@@ -32,6 +37,10 @@ class MainActivity : ComponentActivity() {
             layoutParams.height = size
             boardView.layoutParams = layoutParams
         }
+    }
+
+    private fun renderPieces() {
+
     }
 }
 
