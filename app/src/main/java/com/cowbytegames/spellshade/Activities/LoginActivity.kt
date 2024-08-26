@@ -2,7 +2,7 @@ package com.cowbytegames.spellshade.Activities
 
 
 import android.content.ContentValues.TAG
-import android.content.IntentSender
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -10,27 +10,19 @@ import android.widget.Button
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.enableEdgeToEdge
-import androidx.appcompat.app.AppCompatActivity
 import androidx.credentials.CredentialManager
 import androidx.credentials.CustomCredential
 import androidx.credentials.GetCredentialRequest
 import androidx.credentials.GetCredentialResponse
-import androidx.credentials.GetPasswordOption
-import androidx.credentials.GetPublicKeyCredentialOption
 import androidx.credentials.exceptions.GetCredentialException
 import androidx.lifecycle.lifecycleScope
 import com.cowbytegames.spellshade.R
-import com.google.android.gms.auth.api.identity.BeginSignInRequest
-import com.google.android.gms.auth.api.identity.Identity
-import com.google.android.gms.auth.api.identity.SignInClient
 import com.google.android.libraries.identity.googleid.GetSignInWithGoogleOption
 import com.google.android.libraries.identity.googleid.GoogleIdTokenCredential
 import com.google.android.libraries.identity.googleid.GoogleIdTokenParsingException
 import kotlinx.coroutines.launch
 
 class LoginActivity : ComponentActivity() {
-    private lateinit var googleBtn: Button
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,7 +42,8 @@ class LoginActivity : ComponentActivity() {
                         val googleIdToken = googleIdTokenCredential.id
 
                         Toast.makeText(this, "Google ID: $googleIdToken", Toast.LENGTH_LONG).show()
-
+                        startActivity(Intent(this, HomeActivity::class.java))
+                        finish()
                     } catch (e: GoogleIdTokenParsingException) {
                         Log.e(TAG, "Received an invalid google id token response", e)
                     }

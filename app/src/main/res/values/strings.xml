@@ -2,4 +2,6 @@
     <string name="app_name">Spellshade</string>
     <string name="spellshade_board">Spellshade board</string>
     <string name="web_client_id">822994199000-kgrcueedrq7ls4i9uk65i76thqa83ef4.apps.googleusercontent.com</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
 </resources>

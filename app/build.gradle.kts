@@ -80,4 +80,8 @@ dependencies {
     implementation(libs.play.services.auth)
 
     implementation(libs.kotlinx.coroutines.android)
+
+    implementation(libs.androidx.appcompat)
+    implementation(libs.core.ktx)
+    implementation(libs.google.material)
 }
