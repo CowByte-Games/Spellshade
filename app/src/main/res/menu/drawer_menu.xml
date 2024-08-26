@@ -9,7 +9,19 @@
         android:icon="@android:drawable/checkbox_on_background"
         android:title="Profile" />
     <item
+        android:id="@+id/nav_friends"
+        android:icon="@android:drawable/checkbox_on_background"
+        android:title="Friends" />
+    <item
+        android:id="@+id/nav_play_offline"
+        android:icon="@android:drawable/checkbox_on_background"
+        android:title="Play Offline" />
+    <item
         android:id="@+id/nav_settings"
         android:icon="@android:drawable/button_onoff_indicator_on"
         android:title="Settings" />
+    <item
+        android:id="@+id/nav_log_out"
+        android:icon="@android:drawable/button_onoff_indicator_on"
+        android:title="Log out" />
 </menu>

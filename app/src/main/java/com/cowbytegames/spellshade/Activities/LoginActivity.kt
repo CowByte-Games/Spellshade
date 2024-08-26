@@ -17,6 +17,7 @@ import androidx.credentials.GetCredentialResponse
 import androidx.credentials.exceptions.GetCredentialException
 import androidx.lifecycle.lifecycleScope
 import com.cowbytegames.spellshade.R
+import com.google.android.libraries.identity.googleid.GetGoogleIdOption
 import com.google.android.libraries.identity.googleid.GetSignInWithGoogleOption
 import com.google.android.libraries.identity.googleid.GoogleIdTokenCredential
 import com.google.android.libraries.identity.googleid.GoogleIdTokenParsingException
@@ -28,9 +29,40 @@ class LoginActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_login)
+
+        checkForExistingCredentials()
     }
 
-    fun handleSignIn(result: GetCredentialResponse) {
+    private fun checkForExistingCredentials() {
+        val credentialManager = CredentialManager.create(this)
+
+        val signInWithGoogleOption: GetSignInWithGoogleOption = GetSignInWithGoogleOption.Builder(getString(R.string.web_client_id))
+            .build()
+        val googleIdOption: GetGoogleIdOption = GetGoogleIdOption.Builder()
+            .setFilterByAuthorizedAccounts(false)
+            .setServerClientId(getString(R.string.web_client_id))
+            .setAutoSelectEnabled(true)
+            .build()
+        val request: GetCredentialRequest = GetCredentialRequest.Builder()
+            .addCredentialOption(googleIdOption)
+            .build()
+
+        lifecycleScope.launch {
+            try {
+                val result = credentialManager.getCredential(
+                    request = request,
+                    context = this@LoginActivity
+                )
+                handleSignIn(result)
+            } catch (e: GetCredentialException) {
+                // No saved credentials found, proceed to sign in manually
+                Log.d(TAG, "No saved credentials found or an error occurred: ${e.localizedMessage}")
+            }
+        }
+    }
+
+
+    private fun handleSignIn(result: GetCredentialResponse) {
         val credential = result.credential
 
         when (credential) {
@@ -59,7 +91,7 @@ class LoginActivity : ComponentActivity() {
     }
 
     fun buttonGoogleSignIn(view: View) {
-        val credentialManager = CredentialManager.create(this@LoginActivity)
+        val credentialManager = CredentialManager.create(this)
 
         val signInWithGoogleOption: GetSignInWithGoogleOption = GetSignInWithGoogleOption.Builder(getString(R.string.web_client_id)).build()
         val request: GetCredentialRequest = GetCredentialRequest.Builder()

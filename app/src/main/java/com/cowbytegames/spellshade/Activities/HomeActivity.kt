@@ -1,14 +1,21 @@
 package com.cowbytegames.spellshade.Activities
 
+import android.content.ContentValues.TAG
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 
 import androidx.core.view.GravityCompat
+import androidx.credentials.ClearCredentialStateRequest
+import androidx.credentials.CredentialManager
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.lifecycle.lifecycleScope
 import com.cowbytegames.spellshade.R
 import com.google.android.material.navigation.NavigationView
+import kotlinx.coroutines.launch
 
 class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
@@ -22,7 +29,6 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         val toolbar: androidx.appcompat.widget.Toolbar = findViewById(R.id.toolbar)
         val navView: NavigationView = findViewById(R.id.nav_view)
 
-        // Set the toolbar
         setSupportActionBar(toolbar)
 
         // Toggle for opening and closing the drawer
@@ -48,17 +54,39 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.nav_home -> {
-                // Handle home click
+
             }
             R.id.nav_profile -> {
-                // Handle profile click
+
+            }
+            R.id.nav_friends -> {
+
+            }
+            R.id.nav_play_offline -> {
+                startActivity(Intent(this, GameActivity::class.java))
             }
             R.id.nav_settings -> {
-                // Handle settings click
+
+            }
+            R.id.nav_log_out -> {
+                val credentialManager = CredentialManager.create(this)
+                clearUserCredentials(credentialManager)
             }
         }
 
         drawerLayout.closeDrawer(GravityCompat.START)
         return true
+    }
+
+    private fun clearUserCredentials(credentialManager: CredentialManager) {
+        lifecycleScope.launch {
+            try {
+                credentialManager.clearCredentialState(ClearCredentialStateRequest())
+                startActivity(Intent(this@HomeActivity, LoginActivity::class.java))
+                finish()
+            } catch (e: Exception) {
+                Log.e(TAG, "Failed to clear credentials: ${e.localizedMessage}")
+            }
+        }
     }
 }
