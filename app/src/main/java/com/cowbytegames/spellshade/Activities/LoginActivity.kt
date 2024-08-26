@@ -74,7 +74,10 @@ class LoginActivity : ComponentActivity() {
                         val googleIdToken = googleIdTokenCredential.id
 
                         Toast.makeText(this, "Google ID: $googleIdToken", Toast.LENGTH_LONG).show()
-                        startActivity(Intent(this, HomeActivity::class.java))
+
+                        val intent = Intent(this, HomeActivity::class.java)
+                        intent.putExtra("GOOGLE_ID_TOKEN", googleIdToken)
+                        startActivity(intent)
                         finish()
                     } catch (e: GoogleIdTokenParsingException) {
                         Log.e(TAG, "Received an invalid google id token response", e)
