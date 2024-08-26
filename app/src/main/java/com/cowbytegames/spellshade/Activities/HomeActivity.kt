@@ -69,8 +69,7 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
             }
             R.id.nav_log_out -> {
-                val credentialManager = CredentialManager.create(this)
-                clearUserCredentials(credentialManager)
+                logout()
             }
         }
 
@@ -78,9 +77,10 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         return true
     }
 
-    private fun clearUserCredentials(credentialManager: CredentialManager) {
+    private fun logout() {
         lifecycleScope.launch {
             try {
+                val credentialManager = CredentialManager.create(this@HomeActivity)
                 credentialManager.clearCredentialState(ClearCredentialStateRequest())
                 startActivity(Intent(this@HomeActivity, LoginActivity::class.java))
                 finish()
