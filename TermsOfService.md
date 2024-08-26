@@ -16,13 +16,13 @@ Copy, modify, distribute, or publish any part of Spellshade, including the code,
 Use Spellshade to infringe on the intellectual property rights of others.
   
 ## 3. Intellectual Property
-All content, features, and functionality of Spellshade, including but not limited to the code, design, text, graphics, and logos, are the exclusive property of Cowbyte Games and are protected by intellectual property laws. Unauthorized use, copying, or distribution of Spellshade or any part of it is strictly prohibited.
+All content, features, and functionality of Spellshade, including but not limited to the code, design, text, graphics, and logos, are the exclusive property of CowByte Games and are protected by intellectual property laws. Unauthorized use, copying, or distribution of Spellshade or any part of it is strictly prohibited.
   
 ## 4. Termination
 We reserve the right to terminate or suspend your access to Spellshade at any time, without notice, for any conduct that we, in our sole discretion, believe is in violation of these Terms or harmful to other users, us, or third parties.
   
 ## 5. Limitation of Liability
-To the fullest extent permitted by law, Cowbyte Games will not be liable for any damages arising from the use of or inability to use the Game, including but not limited to direct, indirect, incidental, or consequential damages.
+To the fullest extent permitted by law, CowByte Games will not be liable for any damages arising from the use of or inability to use the Game, including but not limited to direct, indirect, incidental, or consequential damages.
   
 ## 6. Disclaimer of Warranties
 Spellshade is provided on an "as is" and "as available" basis. We make no warranties, express or implied, regarding the operation of Spellshade or the information, content, or materials included in it.
