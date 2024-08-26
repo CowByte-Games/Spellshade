@@ -8,8 +8,8 @@
 
     <ImageView
         android:id="@+id/board"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="350dp"
+        android:layout_height="350dp"
         android:layout_marginTop="5dp"
         android:background="@drawable/board"
         app:layout_constraintEnd_toEndOf="parent"
