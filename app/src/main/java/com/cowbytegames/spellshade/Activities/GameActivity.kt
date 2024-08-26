@@ -9,14 +9,14 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
 import com.cowbytegames.spellshade.R
 
-class MainActivity : ComponentActivity() {
+class GameActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         renderLayout()
     }
 
     private fun renderLayout() {
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_game)
         renderBoard()
         renderPieces()
     }
