@@ -11,8 +11,6 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
 import androidx.gridlayout.widget.GridLayout
 import com.cowbytegames.spellshade.Game.Board
-import com.cowbytegames.spellshade.Game.Pieces.Warrior
-import com.cowbytegames.spellshade.Game.Pieces.Witch
 import com.cowbytegames.spellshade.R
 
 class GameActivity : ComponentActivity() {
@@ -96,11 +94,11 @@ class GameActivity : ComponentActivity() {
 
     private fun renderLayout() {
         setContentView(R.layout.activity_game)
-        renderBoard()
+        renderBoardBackground()
         renderPieces()
     }
 
-    private fun renderBoard() {
+    private fun renderBoardBackground() {
         val boardView = findViewById<View>(R.id.board)
         val rootView = findViewById<ViewGroup>(R.id.root_view)
 
@@ -138,29 +136,8 @@ class GameActivity : ComponentActivity() {
 
     private fun renderPieces() {
         val gridLayout = findViewById<GridLayout>(R.id.board_grid)
+        val boardView = findViewById<ImageView>(R.id.board)
 
-//        for (i in 0 until gridLayout.childCount) {
-//            val imageView = gridLayout.getChildAt(i) as ImageView
-////            imageView.setImageResource(R.drawable.)
-//        }
-        for (i in 0 until 7) {
-            for (j in 0 until 7) {
-                // Calculate the index for GridLayout
-                val index = i * 7 + j
-
-                // Get the corresponding ImageView from GridLayout
-                val imageView = gridLayout.getChildAt(index) as ImageView
-
-                // Get the piece at the current board position
-                val piece = board.get(i,j)
-
-                // Set the image for the ImageView based on the piece
-                if (piece is Warrior) {
-                    imageView.setImageResource(R.drawable.blue_warrior)
-                } else if (piece is Witch) {
-                    imageView.setImageResource(R.drawable.blue_witch)  // Assuming empty_square is a placeholder image
-                }
-            }
-        }
+        board.renderBoard(gridLayout, boardView)
     }
 }
