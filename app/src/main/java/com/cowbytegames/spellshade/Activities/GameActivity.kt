@@ -11,11 +11,14 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
 import androidx.gridlayout.widget.GridLayout
 import com.cowbytegames.spellshade.Game.Board
+import com.cowbytegames.spellshade.Game.Pieces.Common.Piece
 import com.cowbytegames.spellshade.R
 
 class GameActivity : ComponentActivity() {
     private lateinit var board: Board
     private lateinit var coordinateTextView: TextView
+
+    private var selectedPiece: Piece? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -73,7 +76,7 @@ class GameActivity : ComponentActivity() {
         val gridLayout = findViewById<GridLayout>(R.id.board_grid)
         val boardView = findViewById<ImageView>(R.id.board)
 
-        board.renderBoard(gridLayout, boardView)
+        board.renderPieces(gridLayout, boardView)
     }
 
     private fun setPieceOnClick() {
@@ -139,8 +142,15 @@ class GameActivity : ComponentActivity() {
             val row = index / 7
             val column = index % 7
             imageView.setOnClickListener {
-                val coordinates = "Row: $row, Column: $column"
-                coordinateTextView.text = coordinates
+                val piece = board.get(row, column)
+                if (selectedPiece?.currPos?.let { it[0] == row && it[1] == column } == true) {
+                    selectedPiece = null
+                }
+                else {
+                    selectedPiece = piece
+                }
+
+                coordinateTextView.text = selectedPiece?.pieceName ?: "Row: $row, Column: $column"
             }
         }
     }

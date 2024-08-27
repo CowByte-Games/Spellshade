@@ -6,6 +6,8 @@ class Wizard(
     override val currPos: Array<Int>, override val player: Int
 ) : Piece  {
 
+    override val pieceName: String = "Wizard"
+
     override val maxHealth: Int = 10
     override val health: Int = 10
     override val maxShield: Int = 2

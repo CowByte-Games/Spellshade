@@ -1,6 +1,5 @@
 package com.cowbytegames.spellshade.Game
 
-import android.view.View
 import android.widget.ImageView
 import androidx.gridlayout.widget.GridLayout
 import com.cowbytegames.spellshade.Game.Pieces.Common.Piece
@@ -53,7 +52,7 @@ class Board {
         return board.getOrNull(row)?.getOrNull(col)
     }
 
-    fun renderBoard(gridLayout: GridLayout, boardView: ImageView) {
+    fun renderPieces(gridLayout: GridLayout, boardView: ImageView) {
         for (i in 0 until 7) {
             for (j in 0 until 7) {
                 val index = i * 7 + j

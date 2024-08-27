@@ -2,6 +2,7 @@ package com.cowbytegames.spellshade.Game.Pieces.Common
 
 interface Piece {
     val player: Int
+    val pieceName: String
 
     val maxHealth: Int
     val health: Int
