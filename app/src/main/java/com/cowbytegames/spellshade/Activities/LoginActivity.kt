@@ -116,6 +116,9 @@ class LoginActivity : ComponentActivity() {
     }
 
     fun buttonPlayOffline(view: View) {
-
+        val intent = Intent(this, HomeActivity::class.java)
+        intent.putExtra("GOOGLE_ID_TOKEN", "")
+        startActivity(intent)
+        finish()
     }
 }

@@ -8,8 +8,8 @@
 
     <ImageView
         android:id="@+id/board"
-        android:layout_width="350dp"
-        android:layout_height="350dp"
+        android:layout_width="370dp"
+        android:layout_height="370dp"
         android:layout_marginTop="5dp"
         android:background="@drawable/board"
         app:layout_constraintEnd_toEndOf="parent"
@@ -40,5 +40,463 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button2" />
+
+    <androidx.gridlayout.widget.GridLayout
+        android:id="@+id/board_grid"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:alignmentMode="alignMargins"
+        app:columnCount="7"
+        app:layout_constraintBottom_toBottomOf="@+id/board"
+        app:layout_constraintEnd_toEndOf="@+id/board"
+        app:layout_constraintStart_toStartOf="@+id/board"
+        app:layout_constraintTop_toTopOf="@+id/board"
+        app:rowCount="7"
+        app:useDefaultMargins="true">
+
+
+        <ImageView
+            android:id="@+id/square_00"
+            android:scaleType="centerCrop"
+            app:layout_column="0"
+            app:layout_columnWeight="1"
+            app:layout_gravity="fill"
+            app:layout_row="0"
+            app:layout_rowWeight="1" />
+
+        <ImageView
+            android:id="@+id/square_01"
+            android:scaleType="centerCrop"
+            app:layout_column="1"
+            app:layout_columnWeight="1"
+            app:layout_gravity="fill"
+            app:layout_row="0"
+            app:layout_rowWeight="1" />
+
+        <ImageView
+            android:id="@+id/square_02"
+            android:scaleType="centerCrop"
+            app:layout_column="2"
+            app:layout_columnWeight="1"
+            app:layout_gravity="fill"
+            app:layout_row="0"
+            app:layout_rowWeight="1" />
+
+        <ImageView
+            android:id="@+id/square_03"
+            android:scaleType="centerCrop"
+            app:layout_column="3"
+            app:layout_columnWeight="1"
+            app:layout_gravity="fill"
+            app:layout_row="0"
+            app:layout_rowWeight="1" />
+
+        <ImageView
+            android:id="@+id/square_04"
+            android:scaleType="centerCrop"
+            app:layout_column="4"
+            app:layout_columnWeight="1"
+            app:layout_gravity="fill"
+            app:layout_row="0"
+            app:layout_rowWeight="1" />
+
+        <ImageView
+            android:id="@+id/square_05"
+            android:scaleType="centerCrop"
+            app:layout_column="5"
+            app:layout_columnWeight="1"
+            app:layout_gravity="fill"
+            app:layout_row="0"
+            app:layout_rowWeight="1" />
+
+        <ImageView
+            android:id="@+id/square_06"
+            android:scaleType="centerCrop"
+            app:layout_column="6"
+            app:layout_columnWeight="1"
+            app:layout_gravity="fill"
+            app:layout_row="0"
+            app:layout_rowWeight="1" />
+
+        <ImageView
+            android:id="@+id/square_10"
+            android:scaleType="centerCrop"
+            app:layout_column="0"
+            app:layout_columnWeight="1"
+            app:layout_gravity="fill"
+            app:layout_row="1"
+            app:layout_rowWeight="1" />
+
+        <ImageView
+            android:id="@+id/square_11"
+            android:scaleType="centerCrop"
+            app:layout_column="1"
+            app:layout_columnWeight="1"
+            app:layout_gravity="fill"
+            app:layout_row="1"
+            app:layout_rowWeight="1" />
+
+        <ImageView
+            android:id="@+id/square_12"
+            android:scaleType="centerCrop"
+            app:layout_column="2"
+            app:layout_columnWeight="1"
+            app:layout_gravity="fill"
+            app:layout_row="1"
+            app:layout_rowWeight="1" />
+
+        <ImageView
+            android:id="@+id/square_13"
+            android:scaleType="centerCrop"
+            app:layout_column="3"
+            app:layout_columnWeight="1"
+            app:layout_gravity="fill"
+            app:layout_row="1"
+            app:layout_rowWeight="1" />
+
+        <ImageView
+            android:id="@+id/square_14"
+            android:scaleType="centerCrop"
+            app:layout_column="4"
+            app:layout_columnWeight="1"
+            app:layout_gravity="fill"
+            app:layout_row="1"
+            app:layout_rowWeight="1" />
+
+        <ImageView
+            android:id="@+id/square_15"
+            android:scaleType="centerCrop"
+            app:layout_column="5"
+            app:layout_columnWeight="1"
+            app:layout_gravity="fill"
+            app:layout_row="1"
+            app:layout_rowWeight="1" />
+
+        <ImageView
+            android:id="@+id/square_16"
+            android:scaleType="centerCrop"
+            app:layout_column="6"
+            app:layout_columnWeight="1"
+            app:layout_gravity="fill"
+            app:layout_row="1"
+            app:layout_rowWeight="1" />
+
+        <ImageView
+            android:id="@+id/square_20"
+            android:scaleType="centerCrop"
+            app:layout_column="0"
+            app:layout_columnWeight="1"
+            app:layout_gravity="fill"
+            app:layout_row="2"
+            app:layout_rowWeight="1" />
+
+        <ImageView
+            android:id="@+id/square_21"
+            android:scaleType="centerCrop"
+            app:layout_column="1"
+            app:layout_columnWeight="1"
+            app:layout_gravity="fill"
+            app:layout_row="2"
+            app:layout_rowWeight="1" />
+
+        <ImageView
+            android:id="@+id/square_22"
+            android:scaleType="centerCrop"
+            app:layout_column="2"
+            app:layout_columnWeight="1"
+            app:layout_gravity="fill"
+            app:layout_row="2"
+            app:layout_rowWeight="1" />
+
+        <ImageView
+            android:id="@+id/square_23"
+            android:scaleType="centerCrop"
+            app:layout_column="3"
+            app:layout_columnWeight="1"
+            app:layout_gravity="fill"
+            app:layout_row="2"
+            app:layout_rowWeight="1" />
+
+        <ImageView
+            android:id="@+id/square_24"
+            android:scaleType="centerCrop"
+            app:layout_column="4"
+            app:layout_columnWeight="1"
+            app:layout_gravity="fill"
+            app:layout_row="2"
+            app:layout_rowWeight="1" />
+
+        <ImageView
+            android:id="@+id/square_25"
+            android:scaleType="centerCrop"
+            app:layout_column="5"
+            app:layout_columnWeight="1"
+            app:layout_gravity="fill"
+            app:layout_row="2"
+            app:layout_rowWeight="1" />
+
+        <ImageView
+            android:id="@+id/square_26"
+            android:scaleType="centerCrop"
+            app:layout_column="6"
+            app:layout_columnWeight="1"
+            app:layout_gravity="fill"
+            app:layout_row="2"
+            app:layout_rowWeight="1" />
+
+        <ImageView
+            android:id="@+id/square_30"
+            android:scaleType="centerCrop"
+            app:layout_column="0"
+            app:layout_columnWeight="1"
+            app:layout_gravity="fill"
+            app:layout_row="3"
+            app:layout_rowWeight="1" />
+
+        <ImageView
+            android:id="@+id/square_31"
+            android:scaleType="centerCrop"
+            app:layout_column="1"
+            app:layout_columnWeight="1"
+            app:layout_gravity="fill"
+            app:layout_row="3"
+            app:layout_rowWeight="1" />
+
+        <ImageView
+            android:id="@+id/square_32"
+            android:scaleType="centerCrop"
+            app:layout_column="2"
+            app:layout_columnWeight="1"
+            app:layout_gravity="fill"
+            app:layout_row="3"
+            app:layout_rowWeight="1" />
+
+        <ImageView
+            android:id="@+id/square_33"
+            android:scaleType="centerCrop"
+            app:layout_column="3"
+            app:layout_columnWeight="1"
+            app:layout_gravity="fill"
+            app:layout_row="3"
+            app:layout_rowWeight="1" />
+
+        <ImageView
+            android:id="@+id/square_34"
+            android:scaleType="centerCrop"
+            app:layout_column="4"
+            app:layout_columnWeight="1"
+            app:layout_gravity="fill"
+            app:layout_row="3"
+            app:layout_rowWeight="1" />
+
+        <ImageView
+            android:id="@+id/square_35"
+            android:scaleType="centerCrop"
+            app:layout_column="5"
+            app:layout_columnWeight="1"
+            app:layout_gravity="fill"
+            app:layout_row="3"
+            app:layout_rowWeight="1" />
+
+        <ImageView
+            android:id="@+id/square_36"
+            android:scaleType="centerCrop"
+            app:layout_column="6"
+            app:layout_columnWeight="1"
+            app:layout_gravity="fill"
+            app:layout_row="3"
+            app:layout_rowWeight="1" />
+
+        <ImageView
+            android:id="@+id/square_40"
+            android:scaleType="centerCrop"
+            app:layout_column="0"
+            app:layout_columnWeight="1"
+            app:layout_gravity="fill"
+            app:layout_row="4"
+            app:layout_rowWeight="1" />
+
+        <ImageView
+            android:id="@+id/square_41"
+            android:scaleType="centerCrop"
+            app:layout_column="1"
+            app:layout_columnWeight="1"
+            app:layout_gravity="fill"
+            app:layout_row="4"
+            app:layout_rowWeight="1" />
+
+        <ImageView
+            android:id="@+id/square_42"
+            android:scaleType="centerCrop"
+            app:layout_column="2"
+            app:layout_columnWeight="1"
+            app:layout_gravity="fill"
+            app:layout_row="4"
+            app:layout_rowWeight="1" />
+
+        <ImageView
+            android:id="@+id/square_43"
+            android:scaleType="centerCrop"
+            app:layout_column="3"
+            app:layout_columnWeight="1"
+            app:layout_gravity="fill"
+            app:layout_row="4"
+            app:layout_rowWeight="1" />
+
+        <ImageView
+            android:id="@+id/square_44"
+            android:scaleType="centerCrop"
+            app:layout_column="4"
+            app:layout_columnWeight="1"
+            app:layout_gravity="fill"
+            app:layout_row="4"
+            app:layout_rowWeight="1" />
+
+        <ImageView
+            android:id="@+id/square_45"
+            android:scaleType="centerCrop"
+            app:layout_column="5"
+            app:layout_columnWeight="1"
+            app:layout_gravity="fill"
+            app:layout_row="4"
+            app:layout_rowWeight="1" />
+
+        <ImageView
+            android:id="@+id/square_46"
+            android:scaleType="centerCrop"
+            app:layout_column="6"
+            app:layout_columnWeight="1"
+            app:layout_gravity="fill"
+            app:layout_row="4"
+            app:layout_rowWeight="1" />
+
+        <ImageView
+            android:id="@+id/square_50"
+            android:scaleType="centerCrop"
+            app:layout_column="0"
+            app:layout_columnWeight="1"
+            app:layout_gravity="fill"
+            app:layout_row="5"
+            app:layout_rowWeight="1" />
+
+        <ImageView
+            android:id="@+id/square_51"
+            android:scaleType="centerCrop"
+            app:layout_column="1"
+            app:layout_columnWeight="1"
+            app:layout_gravity="fill"
+            app:layout_row="5"
+            app:layout_rowWeight="1" />
+
+        <ImageView
+            android:id="@+id/square_52"
+            android:scaleType="centerCrop"
+            app:layout_column="2"
+            app:layout_columnWeight="1"
+            app:layout_gravity="fill"
+            app:layout_row="5"
+            app:layout_rowWeight="1" />
+
+        <ImageView
+            android:id="@+id/square_53"
+            android:scaleType="centerCrop"
+            app:layout_column="3"
+            app:layout_columnWeight="1"
+            app:layout_gravity="fill"
+            app:layout_row="5"
+            app:layout_rowWeight="1" />
+
+        <ImageView
+            android:id="@+id/square_54"
+            android:scaleType="centerCrop"
+            app:layout_column="4"
+            app:layout_columnWeight="1"
+            app:layout_gravity="fill"
+            app:layout_row="5"
+            app:layout_rowWeight="1" />
+
+        <ImageView
+            android:id="@+id/square_55"
+            android:scaleType="centerCrop"
+            app:layout_column="5"
+            app:layout_columnWeight="1"
+            app:layout_gravity="fill"
+            app:layout_row="5"
+            app:layout_rowWeight="1" />
+
+        <ImageView
+            android:id="@+id/square_56"
+            android:scaleType="centerCrop"
+            app:layout_column="6"
+            app:layout_columnWeight="1"
+            app:layout_gravity="fill"
+            app:layout_row="5"
+            app:layout_rowWeight="1" />
+
+        <ImageView
+            android:id="@+id/square_60"
+            android:scaleType="centerCrop"
+            app:layout_column="0"
+            app:layout_columnWeight="1"
+            app:layout_gravity="fill"
+            app:layout_row="6"
+            app:layout_rowWeight="1" />
+
+        <ImageView
+            android:id="@+id/square_61"
+            android:scaleType="centerCrop"
+            app:layout_column="1"
+            app:layout_columnWeight="1"
+            app:layout_gravity="fill"
+            app:layout_row="6"
+            app:layout_rowWeight="1" />
+
+        <ImageView
+            android:id="@+id/square_62"
+            android:scaleType="centerCrop"
+            app:layout_column="2"
+            app:layout_columnWeight="1"
+            app:layout_gravity="fill"
+            app:layout_row="6"
+            app:layout_rowWeight="1" />
+
+        <ImageView
+            android:id="@+id/square_63"
+            android:scaleType="centerCrop"
+            app:layout_column="3"
+            app:layout_columnWeight="1"
+            app:layout_gravity="fill"
+            app:layout_row="6"
+            app:layout_rowWeight="1" />
+
+        <ImageView
+            android:id="@+id/square_64"
+            android:scaleType="centerCrop"
+            app:layout_column="4"
+            app:layout_columnWeight="1"
+            app:layout_gravity="fill"
+            app:layout_row="6"
+            app:layout_rowWeight="1" />
+
+        <ImageView
+            android:id="@+id/square_65"
+            android:scaleType="centerCrop"
+            app:layout_column="5"
+            app:layout_columnWeight="1"
+            app:layout_gravity="fill"
+            app:layout_row="6"
+            app:layout_rowWeight="1" />
+
+        <ImageView
+            android:id="@+id/square_66"
+            android:scaleType="centerCrop"
+            app:layout_column="6"
+            app:layout_columnWeight="1"
+            app:layout_gravity="fill"
+            app:layout_row="6"
+            app:layout_rowWeight="1" />
+
+
+    </androidx.gridlayout.widget.GridLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
