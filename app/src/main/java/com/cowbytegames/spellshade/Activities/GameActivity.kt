@@ -111,10 +111,6 @@ class GameActivity : ComponentActivity() {
                     isProcessingClick = true
 
                     handleClick(row, column)
-
-                    Handler(Looper.getMainLooper()).postDelayed({
-                        isProcessingClick = false
-                    }, 100)
                 }
             }
         }
@@ -128,11 +124,10 @@ class GameActivity : ComponentActivity() {
 
             if (availableMoves.contains(Pair(row, column))) {
                 selectedPiece!!.move(Pair(row, column), board)
-                board.resetCellBackgrounds()
                 board.renderPieces()
-            } else {
-                board.resetCellBackgrounds()
             }
+
+            board.resetCellBackgrounds()
             selectedPiece = null
         }
         else if (piece != null){
@@ -141,6 +136,8 @@ class GameActivity : ComponentActivity() {
 
             board.setCellBackgrounds(availableMoves)
         }
+
         coordinateTextView.text = selectedPiece?.pieceName ?: "Row: $row, Column: $column"
+        isProcessingClick = false
     }
 }

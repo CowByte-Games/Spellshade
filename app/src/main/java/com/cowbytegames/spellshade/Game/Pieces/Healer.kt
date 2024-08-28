@@ -1,7 +1,9 @@
 package com.cowbytegames.spellshade.Game.Pieces
 
+import android.widget.ImageView
 import com.cowbytegames.spellshade.Game.Board
 import com.cowbytegames.spellshade.Game.Pieces.Common.Piece
+import kotlin.math.ceil
 
 class Healer(
     override var currPos: Pair<Int,Int>, override var player: Int
@@ -20,11 +22,23 @@ class Healer(
     override var isBuffed: Boolean = false
 
     override fun move(position: Pair<Int, Int>, board: Board) {
-        TODO("Not yet implemented")
+        board.set(currPos.first, currPos.second, null)
+        currPos = position
+        board.set(currPos.first, currPos.second, this)
     }
 
     override fun availableMoves(board: Board): ArrayList<Pair<Int,Int>> {
-        return arrayListOf()
+        val squares : ArrayList<Pair<Int, Int>> = arrayListOf()
+
+        for (i in 0 until 7) {
+            for (j in 0 until 7) {
+                if (board.get(i, j) == null) {
+                    squares.add(Pair(i,j))
+                }
+            }
+        }
+
+        return squares
     }
 
     override fun attack(position: Pair<Int, Int>) {
