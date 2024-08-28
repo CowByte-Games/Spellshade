@@ -10,6 +10,7 @@ interface Piece {
     var health: Int
     var maxShield: Int
     var shield: Int
+    var maxDamage: Int
     var damage: Int
     var heal: Int
 
@@ -24,4 +25,5 @@ interface Piece {
     fun heal(position: Pair<Int, Int>)
     fun shield(position: Pair<Int, Int>)
     fun stun(position: Pair<Int, Int>)
+    fun passive(board: Board)
 }

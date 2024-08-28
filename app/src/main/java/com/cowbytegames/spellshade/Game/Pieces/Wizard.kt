@@ -13,6 +13,7 @@ class Wizard(
     override var health: Int = 10
     override var maxShield: Int = 2
     override var shield: Int = 0
+    override var maxDamage: Int = 2
     override var damage: Int = 2
     override var heal: Int = 0
 
@@ -41,5 +42,9 @@ class Wizard(
 
     override fun stun(position:Pair<Int, Int>) {
         TODO("Not yet implemented")
+    }
+
+    override fun passive(board: Board) {
+
     }
 }
