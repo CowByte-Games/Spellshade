@@ -20,7 +20,9 @@ class Witch(
     override var isBuffed: Boolean = false
 
     override fun move(position: Pair<Int, Int>, board: Board) {
-        TODO("Not yet implemented")
+        board.set(currPos.first, currPos.second, null)
+        currPos = position
+        board.set(currPos.first, currPos.second, this)
     }
 
     override fun availableMoves(board: Board): ArrayList<Pair<Int,Int>> {
