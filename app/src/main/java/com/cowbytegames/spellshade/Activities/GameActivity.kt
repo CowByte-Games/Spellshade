@@ -149,7 +149,6 @@ class GameActivity : ComponentActivity() {
                 else {
                     selectedPiece = piece
                 }
-
                 coordinateTextView.text = selectedPiece?.pieceName ?: "Row: $row, Column: $column"
             }
         }

@@ -1,5 +1,6 @@
 package com.cowbytegames.spellshade.Game.Pieces
 
+import com.cowbytegames.spellshade.Game.Board
 import com.cowbytegames.spellshade.Game.Pieces.Common.Piece
 
 class Warrior(
@@ -20,6 +21,10 @@ class Warrior(
 
     override fun move(position: Array<Int>) {
 
+    }
+
+    override fun availableMoves(board: Board): Array<Array<Int>> {
+        TODO("Not yet implemented")
     }
 
     override fun attack(position: Array<Int>) {

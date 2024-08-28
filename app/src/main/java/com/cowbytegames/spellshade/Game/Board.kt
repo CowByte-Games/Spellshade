@@ -9,6 +9,7 @@ import kotlin.math.ceil
 
 class Board {
     val board: Array<Array<Piece?>> =  Array(7) { arrayOfNulls<Piece>(7) }
+    private var activePlayer = 0
 
     init {
         board[1][1] = Warrior(arrayOf(1,1), 1)
@@ -100,6 +101,17 @@ class Board {
                     else { imageView.setImageResource(R.drawable.red_commander) }
                 }
             }
+        }
+    }
+
+    fun getActivePlayer(): Int {
+        return activePlayer
+    }
+    fun flipActivePlayer() {
+        if (activePlayer == 1) {
+            activePlayer = 2
+        } else {
+            activePlayer = 1
         }
     }
 }

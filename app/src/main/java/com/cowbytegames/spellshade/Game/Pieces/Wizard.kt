@@ -1,5 +1,6 @@
 package com.cowbytegames.spellshade.Game.Pieces
 
+import com.cowbytegames.spellshade.Game.Board
 import com.cowbytegames.spellshade.Game.Pieces.Common.Piece
 
 class Wizard(
@@ -19,6 +20,10 @@ class Wizard(
     override val isBuffed: Boolean = false
 
     override fun move(position: Array<Int>) {
+        TODO("Not yet implemented")
+    }
+
+    override fun availableMoves(board: Board): Array<Array<Int>> {
         TODO("Not yet implemented")
     }
 

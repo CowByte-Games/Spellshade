@@ -1,5 +1,7 @@
 package com.cowbytegames.spellshade.Game.Pieces.Common
 
+import com.cowbytegames.spellshade.Game.Board
+
 interface Piece {
     val player: Int
     val pieceName: String
@@ -17,6 +19,7 @@ interface Piece {
     val currPos: Array<Int>
 
     fun move(position: Array<Int>)
+    fun availableMoves(board: Board): Array<Array<Int>>
     fun attack(position: Array<Int>)
     fun heal(position: Array<Int>)
     fun shield(position: Array<Int>)
