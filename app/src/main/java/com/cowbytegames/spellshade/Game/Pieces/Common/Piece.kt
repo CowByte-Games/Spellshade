@@ -3,23 +3,23 @@ package com.cowbytegames.spellshade.Game.Pieces.Common
 import com.cowbytegames.spellshade.Game.Board
 
 interface Piece {
-    val player: Int
-    val pieceName: String
+    var player: Int
+    var pieceName: String
 
-    val maxHealth: Int
-    val health: Int
-    val maxShield: Int
-    val shield: Int
-    val damage: Int
-    val heal: Int
+    var maxHealth: Int
+    var health: Int
+    var maxShield: Int
+    var shield: Int
+    var damage: Int
+    var heal: Int
 
-    val isStun: Boolean
-    val isBuffed: Boolean
+    var isStun: Boolean
+    var isBuffed: Boolean
 
-    val currPos: Array<Int>
+    var currPos: Pair<Int,Int>
 
     fun move(position: Array<Int>)
-    fun availableMoves(board: Board): Array<Array<Int>>
+    fun availableMoves(board: Board): ArrayList<Pair<Int, Int>>
     fun attack(position: Array<Int>)
     fun heal(position: Array<Int>)
     fun shield(position: Array<Int>)

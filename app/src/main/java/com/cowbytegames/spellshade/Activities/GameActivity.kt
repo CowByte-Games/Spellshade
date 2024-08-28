@@ -1,5 +1,6 @@
 package com.cowbytegames.spellshade.Activities
 
+import android.graphics.Color
 import android.os.Bundle
 import android.util.TypedValue
 import android.view.View
@@ -12,6 +13,7 @@ import androidx.constraintlayout.widget.ConstraintSet
 import androidx.gridlayout.widget.GridLayout
 import com.cowbytegames.spellshade.Game.Board
 import com.cowbytegames.spellshade.Game.Pieces.Common.Piece
+import com.cowbytegames.spellshade.Game.Pieces.Warrior
 import com.cowbytegames.spellshade.R
 
 class GameActivity : ComponentActivity() {
@@ -143,13 +145,32 @@ class GameActivity : ComponentActivity() {
             val column = index % 7
             imageView.setOnClickListener {
                 val piece = board.get(row, column)
-                if (selectedPiece?.currPos?.let { it[0] == row && it[1] == column } == true) {
+                if (selectedPiece?.currPos?.let { it.first == row && it.second == column } == true) {
                     selectedPiece = null
                 }
                 else {
                     selectedPiece = piece
                 }
                 coordinateTextView.text = selectedPiece?.pieceName ?: "Row: $row, Column: $column"
+
+                if(selectedPiece is Warrior) {
+                    var a = (selectedPiece as Warrior).availableMoves(board)
+
+                    val moveStrings = a.joinToString(separator = ", ") { (row, column) ->
+                        "Row: $row, Column: $column"
+                    }
+                    // Update a TextView or use the string as needed
+                    coordinateTextView.text = "Available moves: $moveStrings"
+
+                    for (box in a) {
+                        val (row, column) = box
+                        val index = row * 7 + column
+                        val imageView = imageViews[index]
+
+                        // Perform any action you want on the imageView for the available move
+                        imageView.setBackgroundColor(Color.GREEN)
+                    }
+                }
             }
         }
     }

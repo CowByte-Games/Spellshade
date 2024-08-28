@@ -4,26 +4,26 @@ import com.cowbytegames.spellshade.Game.Board
 import com.cowbytegames.spellshade.Game.Pieces.Common.Piece
 
 class Commander(
-    override val currPos: Array<Int>, override val player: Int
+    override var currPos: Pair<Int,Int>, override var player: Int
 ) : Piece  {
 
-    override val pieceName: String = "Commander"
+    override var pieceName: String = "Commander"
 
-    override val maxHealth: Int = 10
-    override val health: Int = 10
-    override val maxShield: Int = 2
-    override val shield: Int = 0
-    override val damage: Int = 2
-    override val heal: Int = 0
+    override var maxHealth: Int = 10
+    override var health: Int = 10
+    override var maxShield: Int = 2
+    override var shield: Int = 0
+    override var damage: Int = 2
+    override var heal: Int = 0
 
-    override val isStun: Boolean = false
-    override val isBuffed: Boolean = false
+    override var isStun: Boolean = false
+    override var isBuffed: Boolean = false
 
     override fun move(position: Array<Int>) {
         TODO("Not yet implemented")
     }
 
-    override fun availableMoves(board: Board): Array<Array<Int>> {
+    override fun availableMoves(board: Board): ArrayList<Pair<Int,Int>> {
         TODO("Not yet implemented")
     }
 
