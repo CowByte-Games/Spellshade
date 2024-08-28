@@ -19,27 +19,27 @@ class Assassin(
     override var isStun: Boolean = false
     override var isBuffed: Boolean = false
 
-    override fun move(position: Array<Int>) {
+    override fun move(position: Pair<Int, Int>, board: Board) {
         TODO("Not yet implemented")
     }
 
     override fun availableMoves(board: Board): ArrayList<Pair<Int,Int>> {
+        return arrayListOf()
+    }
+
+    override fun attack(position: Pair<Int, Int>) {
         TODO("Not yet implemented")
     }
 
-    override fun attack(position: Array<Int>) {
+    override fun heal(position: Pair<Int, Int>) {
         TODO("Not yet implemented")
     }
 
-    override fun heal(position: Array<Int>) {
+    override fun shield(position: Pair<Int, Int>) {
         TODO("Not yet implemented")
     }
 
-    override fun shield(position: Array<Int>) {
-        TODO("Not yet implemented")
-    }
-
-    override fun stun(position: Array<Int>) {
+    override fun stun(position: Pair<Int, Int>) {
         TODO("Not yet implemented")
     }
 }

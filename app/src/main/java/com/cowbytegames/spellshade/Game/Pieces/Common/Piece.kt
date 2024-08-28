@@ -18,10 +18,10 @@ interface Piece {
 
     var currPos: Pair<Int,Int>
 
-    fun move(position: Array<Int>)
+    fun move(position: Pair<Int, Int>, board: Board)
     fun availableMoves(board: Board): ArrayList<Pair<Int, Int>>
-    fun attack(position: Array<Int>)
-    fun heal(position: Array<Int>)
-    fun shield(position: Array<Int>)
-    fun stun(position: Array<Int>)
+    fun attack(position: Pair<Int, Int>)
+    fun heal(position: Pair<Int, Int>)
+    fun shield(position: Pair<Int, Int>)
+    fun stun(position: Pair<Int, Int>)
 }

@@ -19,8 +19,10 @@ class Warrior(
     override var isStun: Boolean = false
     override var isBuffed: Boolean = false
 
-    override fun move(position: Array<Int>) {
-
+    override fun move(position: Pair<Int, Int>, board: Board) {
+        board.set(currPos.first, currPos.second, null)
+        currPos = position
+        board.set(currPos.first, currPos.second, this)
     }
 
     override fun availableMoves(board: Board): ArrayList<Pair<Int, Int>> {
@@ -54,19 +56,19 @@ class Warrior(
         return squares
     }
 
-    override fun attack(position: Array<Int>) {
+    override fun attack(position: Pair<Int, Int>) {
         TODO("Not yet implemented")
     }
 
-    override fun heal(position: Array<Int>) {
+    override fun heal(position: Pair<Int, Int>) {
         TODO("Not yet implemented")
     }
 
-    override fun shield(position: Array<Int>) {
+    override fun shield(position: Pair<Int, Int>) {
         TODO("Not yet implemented")
     }
 
-    override fun stun(position: Array<Int>) {
+    override fun stun(position: Pair<Int, Int>) {
         TODO("Not yet implemented")
     }
 }

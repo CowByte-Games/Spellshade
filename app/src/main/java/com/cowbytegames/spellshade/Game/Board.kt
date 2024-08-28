@@ -1,5 +1,6 @@
 package com.cowbytegames.spellshade.Game
 
+import android.graphics.Color
 import android.widget.ImageView
 import androidx.gridlayout.widget.GridLayout
 import com.cowbytegames.spellshade.Game.Pieces.Common.Piece
@@ -7,7 +8,7 @@ import com.cowbytegames.spellshade.Game.Pieces.*
 import com.cowbytegames.spellshade.R
 import kotlin.math.ceil
 
-class Board {
+class Board(val imageViews: Array<ImageView>) {
     val board: Array<Array<Piece?>> =  Array(7) { arrayOfNulls<Piece>(7) }
     private var activePlayer = 0
 
@@ -53,7 +54,11 @@ class Board {
         return board.getOrNull(row)?.getOrNull(col)
     }
 
-    fun renderPieces(gridLayout: GridLayout, boardView: ImageView) {
+    fun set(row: Int, col: Int, piece: Piece?) {
+        board[row][col] = piece
+    }
+
+    fun fixCellImageSize(gridLayout: GridLayout, boardView: ImageView) {
         for (i in 0 until 7) {
             for (j in 0 until 7) {
                 val index = i * 7 + j
@@ -65,6 +70,17 @@ class Board {
                 layoutParams.width = size
                 layoutParams.height = size
                 imageView.layoutParams = layoutParams
+            }
+        }
+    }
+
+    fun renderPieces() {
+        for (i in 0 until 7) {
+            for (j in 0 until 7) {
+                val index = i * 7 + j
+
+                val imageView = imageViews[index]
+                imageView.setImageResource(0)
 
                 val piece = board[i][j]
 
@@ -101,6 +117,22 @@ class Board {
                     else { imageView.setImageResource(R.drawable.red_commander) }
                 }
             }
+        }
+    }
+
+    fun resetCellBackgrounds() {
+        for (imageView in imageViews) {
+            imageView.setBackgroundColor(Color.TRANSPARENT)
+        }
+    }
+
+    fun setCellBackgrounds(cells: ArrayList<Pair<Int, Int>>) {
+        for (cell in cells) {
+            val (r, c) = cell
+            val i = r * 7 + c
+            val iV = imageViews[i]
+
+            iV.setBackgroundColor(Color.GREEN)
         }
     }
 
