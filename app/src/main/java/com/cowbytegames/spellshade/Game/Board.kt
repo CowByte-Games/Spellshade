@@ -1,6 +1,7 @@
 package com.cowbytegames.spellshade.Game
 
 import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.widget.ImageView
 import androidx.gridlayout.widget.GridLayout
 import com.cowbytegames.spellshade.Game.Pieces.Common.Piece
@@ -10,7 +11,7 @@ import kotlin.math.ceil
 
 class Board(val imageViews: Array<ImageView>) {
     val board: Array<Array<Piece?>> =  Array(7) { arrayOfNulls<Piece>(7) }
-    private var activePlayer = 0
+    private var activePlayer = 1
 
     init {
         board[1][1] = Warrior(Pair(1,1), 1)
@@ -84,35 +85,43 @@ class Board(val imageViews: Array<ImageView>) {
 
                 val piece = board[i][j]
 
+                if (piece != null){
+                    if (piece.isStunned) {
+                        imageView.setBackgroundColor(Color.BLUE)
+                    } else {
+                        imageView.setBackgroundColor(0)
+                    }
+                }
+
                 if (piece is Warrior) {
                     if (piece.player == 1) { imageView.setImageResource(R.drawable.blue_warrior) }
                     else { imageView.setImageResource(R.drawable.red_warrior) }
                 }
-                if (piece is Witch) {
+                else if (piece is Witch) {
                     if (piece.player == 1) { imageView.setImageResource(R.drawable.blue_witch) }
                     else { imageView.setImageResource(R.drawable.red_witch) }
                 }
-                if (piece is Wizard) {
+                else if (piece is Wizard) {
                     if (piece.player == 1) { imageView.setImageResource(R.drawable.blue_wizard) }
                     else { imageView.setImageResource(R.drawable.red_wizard) }
                 }
-                if (piece is Assassin) {
+                else if (piece is Assassin) {
                     if (piece.player == 1) { imageView.setImageResource(R.drawable.blue_assassin) }
                     else { imageView.setImageResource(R.drawable.red_assassin) }
                 }
-                if (piece is Archer) {
+                else if (piece is Archer) {
                     if (piece.player == 1) { imageView.setImageResource(R.drawable.blue_archer) }
                     else { imageView.setImageResource(R.drawable.red_archer) }
                 }
-                if (piece is Healer) {
+                else if (piece is Healer) {
                     if (piece.player == 1) { imageView.setImageResource(R.drawable.blue_healer) }
                     else { imageView.setImageResource(R.drawable.red_healer) }
                 }
-                if (piece is Tank) {
+                else if (piece is Tank) {
                     if (piece.player == 1) { imageView.setImageResource(R.drawable.blue_tank) }
                     else { imageView.setImageResource(R.drawable.red_tank) }
                 }
-                if (piece is Commander) {
+                else if (piece is Commander) {
                     if (piece.player == 1) { imageView.setImageResource(R.drawable.blue_commander) }
                     else { imageView.setImageResource(R.drawable.red_commander) }
                 }
@@ -120,13 +129,16 @@ class Board(val imageViews: Array<ImageView>) {
         }
     }
 
-    fun resetCellBackgrounds() {
+    fun resetAvailableMovesRender() {
         for (imageView in imageViews) {
-            imageView.setBackgroundColor(Color.TRANSPARENT)
+            val background = imageView.background
+            if (background is ColorDrawable && background.color == Color.GREEN) {
+                imageView.setBackgroundColor(Color.TRANSPARENT)
+            }
         }
     }
 
-    fun setCellBackgrounds(cells: ArrayList<Pair<Int, Int>>) {
+    fun setAvailableMovesRender(cells: ArrayList<Pair<Int, Int>>) {
         for (cell in cells) {
             val (r, c) = cell
             val i = r * 7 + c

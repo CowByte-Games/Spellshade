@@ -26,4 +26,8 @@ interface Piece {
     fun shield(position: Pair<Int, Int>)
     fun stun(position: Pair<Int, Int>)
     fun passive(board: Board)
+
+    fun isTurn(board: Board): Boolean {
+        return board.getActivePlayer() == player
+    }
 }

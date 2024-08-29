@@ -1,13 +1,10 @@
 package com.cowbytegames.spellshade.Activities
 
-import android.graphics.Color
-import android.media.Image
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.util.TypedValue
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.ComponentActivity
@@ -15,16 +12,21 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
 import androidx.gridlayout.widget.GridLayout
 import com.cowbytegames.spellshade.Game.Board
+import com.cowbytegames.spellshade.Game.Game
 import com.cowbytegames.spellshade.Game.Pieces.Common.Piece
 import com.cowbytegames.spellshade.R
 
 class GameActivity : ComponentActivity() {
-    private lateinit var coordinateTextView: TextView
+    private lateinit var pieceNameTextView: TextView
+    private lateinit var pieceStatsTextView: TextView
+    private lateinit var endTurnButton: Button
     private lateinit var imageViews: Array<ImageView>
     private lateinit var gridLayout: GridLayout
     private lateinit var boardView: ImageView
+    private lateinit var narratorTextView: TextView
 
     private lateinit var board: Board
+    private lateinit var game: Game
     private var selectedPiece: Piece? = null
 
     private var isProcessingClick: Boolean = false
@@ -33,9 +35,12 @@ class GameActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game)
 
-        coordinateTextView = findViewById(R.id.textView2)
+        pieceNameTextView = findViewById(R.id.textView_pieceName)
+        pieceStatsTextView = findViewById(R.id.textView_pieceStats)
+        endTurnButton = findViewById(R.id.button_endTurn)
         gridLayout = findViewById(R.id.board_grid)
         boardView = findViewById(R.id.board)
+        narratorTextView = findViewById(R.id.textView_narrator)
         imageViews = arrayOf(
             findViewById(R.id.square_00), findViewById(R.id.square_01), findViewById(R.id.square_02),
             findViewById(R.id.square_03), findViewById(R.id.square_04), findViewById(R.id.square_05),
@@ -57,6 +62,7 @@ class GameActivity : ComponentActivity() {
         )
 
         board = Board(imageViews)
+        game = Game(board, narratorTextView, this::doneProcessingCallBack)
         renderLayout()
         setPieceOnClick()
     }
@@ -127,17 +133,38 @@ class GameActivity : ComponentActivity() {
                 board.renderPieces()
             }
 
-            board.resetCellBackgrounds()
-            selectedPiece = null
+            unselectPiece()
         }
         else if (piece != null){
             selectedPiece = piece
             val availableMoves = selectedPiece!!.availableMoves(board)
 
-            board.setCellBackgrounds(availableMoves)
+            board.setAvailableMovesRender(availableMoves)
+            pieceNameTextView.text = selectedPiece!!.pieceName
+            pieceStatsTextView.text = """
+                Health: ${selectedPiece!!.health}
+                Shield: ${selectedPiece!!.shield}
+                Attack: ${selectedPiece!!.damage}
+            """.trimIndent()
         }
 
-        coordinateTextView.text = selectedPiece?.pieceName ?: "Row: $row, Column: $column"
+        isProcessingClick = false
+    }
+
+    fun onClickEndTurn(view: View) {
+        isProcessingClick = true
+        unselectPiece()
+        game.endTurn()
+    }
+
+    private fun unselectPiece() {
+        board.resetAvailableMovesRender()
+        pieceNameTextView.text = ""
+        pieceStatsTextView.text = ""
+        selectedPiece = null
+    }
+
+    private fun doneProcessingCallBack() {
         isProcessingClick = false
     }
 }

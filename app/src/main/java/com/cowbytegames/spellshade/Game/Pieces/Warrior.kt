@@ -29,7 +29,7 @@ class Warrior(
     override fun availableMoves(board: Board): ArrayList<Pair<Int, Int>> {
         val squares : ArrayList<Pair<Int, Int>> = arrayListOf()
 
-        if (isStunned) {
+        if (!isTurn(board) || isStunned) {
             return squares
         }
 

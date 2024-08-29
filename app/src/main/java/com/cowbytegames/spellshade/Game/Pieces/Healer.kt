@@ -17,8 +17,8 @@ class Healer(
     override var damage: Int = 2
     override var heal: Int = 0
 
-    override var isStunned: Boolean = false
-    override var stunnedDuration: Int = 0
+    override var isStunned: Boolean = true
+    override var stunnedDuration: Int = 1
 
     override fun move(position: Pair<Int, Int>, board: Board) {
         board.set(currPos.first, currPos.second, null)
@@ -29,7 +29,7 @@ class Healer(
     override fun availableMoves(board: Board): ArrayList<Pair<Int,Int>> {
         val squares : ArrayList<Pair<Int, Int>> = arrayListOf()
 
-        if (isStunned) {
+        if (!isTurn(board) || isStunned) {
             return squares
         }
 

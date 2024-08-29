@@ -27,6 +27,10 @@ class Wizard(
     override fun availableMoves(board: Board): ArrayList<Pair<Int,Int>> {
         val squares : ArrayList<Pair<Int, Int>> = arrayListOf()
 
+        if (!isTurn(board) || isStunned) {
+            return squares
+        }
+
         val directions = listOf(
             Pair(1, -1),
             Pair(1, 1),

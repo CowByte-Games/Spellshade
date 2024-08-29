@@ -1,20 +1,24 @@
 package com.cowbytegames.spellshade.Game
 
+import android.widget.TextView
 import com.cowbytegames.spellshade.Game.Pieces.*
 import kotlinx.coroutines.*
 
-class Game(val board: Board){
+class Game(val board: Board, val narratorTextView: TextView, private val onEndTurnComplete: () -> Unit,){
     fun endTurn() {
         GlobalScope.launch(Dispatchers.Main) {
             executeDamagePassives()
             removeDeadPieces()
+            board.renderPieces()
             delay(1000)
             resetBuffs()
             executeNonDamagePassives()
-            delay(1000)
+            delay(3000)
             resetDebuffs()
+            board.renderPieces()
 
             board.flipActivePlayer()
+            onEndTurnComplete()
         }
     }
 
@@ -46,6 +50,7 @@ class Game(val board: Board){
     }
 
     private fun executeDamagePassives() {
+        narratorTextView.text = "Executing damage passives"
         for (i in 0 until 7) {
             for (j in 0 until 7) {
                 val piece = board.get(i, j)
@@ -58,11 +63,16 @@ class Game(val board: Board){
 
     private fun executeNonDamagePassives() {
         GlobalScope.launch(Dispatchers.Main) {
+            narratorTextView.text = "Healers healing allies"
             executeHealerPassive()
             delay(1000)
+            narratorTextView.text = "Tanks shielding allies"
             executeTankPassive()
             delay(1000)
+            narratorTextView.text = "Commander buffing allies"
             executeCommanderPassive()
+            delay(1000)
+            narratorTextView.text = ""
         }
     }
 
