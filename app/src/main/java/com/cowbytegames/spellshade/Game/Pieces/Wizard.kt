@@ -25,7 +25,25 @@ class Wizard(
     }
 
     override fun availableMoves(board: Board): ArrayList<Pair<Int,Int>> {
-        return arrayListOf()
+        val squares : ArrayList<Pair<Int, Int>> = arrayListOf()
+
+        val directions = listOf(
+            Pair(1, -1),
+            Pair(1, 1),
+            Pair(-1, 1),
+            Pair(-1, -1)
+        )
+
+        for ((rowOffset, colOffset) in directions) {
+            val newRow = currPos.first + rowOffset
+            val newCol = currPos.second + colOffset
+
+            if (board.get(newRow, newCol) == null) {
+                squares.add(Pair(newRow, newCol))
+            }
+        }
+
+        return squares
     }
 
     override fun attack(position:Pair<Int, Int>) {
