@@ -20,12 +20,6 @@ class Warrior(
     override var isStunned: Boolean = false
     override var stunnedDuration: Int = 0
 
-    override fun move(position: Pair<Int, Int>, board: Board) {
-        board.set(currPos.first, currPos.second, null)
-        currPos = position
-        board.set(currPos.first, currPos.second, this)
-    }
-
     override fun availableMoves(board: Board): ArrayList<Pair<Int, Int>> {
         val squares : ArrayList<Pair<Int, Int>> = arrayListOf()
 
@@ -53,8 +47,10 @@ class Warrior(
             val newRow = currPos.first + rowOffset
             val newCol = currPos.second + colOffset
 
-            if (board.get(newRow, newCol) == null) {
-                squares.add(Pair(newRow, newCol))
+            if ((newRow < 7 && newCol < 7) && (newRow >= 0 && newCol >= 0)) {
+                if (board.get(newRow, newCol) == null) {
+                    squares.add(Pair(newRow, newCol))
+                }
             }
         }
 

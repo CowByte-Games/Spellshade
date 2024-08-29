@@ -20,14 +20,30 @@ class Witch(
     override var isStunned: Boolean = false
     override var stunnedDuration: Int = 0
 
-    override fun move(position: Pair<Int, Int>, board: Board) {
-        board.set(currPos.first, currPos.second, null)
-        currPos = position
-        board.set(currPos.first, currPos.second, this)
-    }
-
     override fun availableMoves(board: Board): ArrayList<Pair<Int,Int>> {
-        return arrayListOf()
+        val squares : ArrayList<Pair<Int, Int>> = arrayListOf()
+
+        if (!isTurn(board) || isStunned) {
+            return squares
+        }
+
+        val directions = listOf(
+            Pair(0, -1), Pair(0, -2), Pair(0, 1), Pair(0, 2),
+            Pair(1, 0), Pair(2, 0), Pair(-1, 0), Pair(-2, 0)
+        )
+
+        for ((rowOffset, colOffset) in directions) {
+            val newRow = currPos.first + rowOffset
+            val newCol = currPos.second + colOffset
+
+            if ((newRow < 7 && newCol < 7) && (newRow >= 0 && newCol >= 0)) {
+                if (board.get(newRow, newCol) == null) {
+                    squares.add(Pair(newRow, newCol))
+                }
+            }
+        }
+
+        return squares
     }
 
     override fun attack(position: Pair<Int, Int>) {

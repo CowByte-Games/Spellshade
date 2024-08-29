@@ -20,12 +20,6 @@ class Healer(
     override var isStunned: Boolean = true
     override var stunnedDuration: Int = 1
 
-    override fun move(position: Pair<Int, Int>, board: Board) {
-        board.set(currPos.first, currPos.second, null)
-        currPos = position
-        board.set(currPos.first, currPos.second, this)
-    }
-
     override fun availableMoves(board: Board): ArrayList<Pair<Int,Int>> {
         val squares : ArrayList<Pair<Int, Int>> = arrayListOf()
 

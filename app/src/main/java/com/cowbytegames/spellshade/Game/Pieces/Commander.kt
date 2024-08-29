@@ -20,10 +20,6 @@ class Commander(
     override var isStunned: Boolean = false
     override var stunnedDuration: Int = 0
 
-    override fun move(position: Pair<Int, Int>, board: Board) {
-        TODO("Not yet implemented")
-    }
-
     override fun availableMoves(board: Board): ArrayList<Pair<Int,Int>> {
         return arrayListOf()
     }
