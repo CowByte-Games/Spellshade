@@ -11,14 +11,14 @@ class Witch(
 
     override var maxHealth: Int = 10
     override var health: Int = 10
-    override var maxShield: Int = 2
+    override var shieldStrength: Int = 0
     override var shield: Int = 0
-    override var maxDamage: Int = 2
+    override var baseDamage: Int = 2
     override var damage: Int = 2
     override var heal: Int = 0
 
-    override var isStun: Boolean = false
-    override var isBuffed: Boolean = false
+    override var isStunned: Boolean = false
+    override var stunnedDuration: Int = 0
 
     override fun move(position: Pair<Int, Int>, board: Board) {
         TODO("Not yet implemented")

@@ -8,14 +8,14 @@ interface Piece {
 
     var maxHealth: Int
     var health: Int
-    var maxShield: Int
+    var shieldStrength: Int
     var shield: Int
-    var maxDamage: Int
+    var baseDamage: Int
     var damage: Int
     var heal: Int
 
-    var isStun: Boolean
-    var isBuffed: Boolean
+    var isStunned: Boolean
+    var stunnedDuration: Int
 
     var currPos: Pair<Int,Int>
 
