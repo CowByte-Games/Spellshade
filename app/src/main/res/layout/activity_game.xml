@@ -62,6 +62,7 @@
 
         <ImageView
             android:id="@+id/square_00"
+            android:layout_margin="1dp"
             android:scaleType="fitXY"
             app:layout_column="0"
             app:layout_columnWeight="1"
@@ -71,6 +72,7 @@
 
         <ImageView
             android:id="@+id/square_01"
+            android:layout_margin="1dp"
             android:scaleType="fitXY"
             app:layout_column="1"
             app:layout_columnWeight="1"
@@ -80,6 +82,7 @@
 
         <ImageView
             android:id="@+id/square_02"
+            android:layout_margin="1dp"
             android:scaleType="fitXY"
             app:layout_column="2"
             app:layout_columnWeight="1"
@@ -89,6 +92,7 @@
 
         <ImageView
             android:id="@+id/square_03"
+            android:layout_margin="1dp"
             android:scaleType="fitXY"
             app:layout_column="3"
             app:layout_columnWeight="1"
@@ -98,6 +102,7 @@
 
         <ImageView
             android:id="@+id/square_04"
+            android:layout_margin="1dp"
             android:scaleType="fitXY"
             app:layout_column="4"
             app:layout_columnWeight="1"
@@ -107,6 +112,7 @@
 
         <ImageView
             android:id="@+id/square_05"
+            android:layout_margin="1dp"
             android:scaleType="fitXY"
             app:layout_column="5"
             app:layout_columnWeight="1"
@@ -116,6 +122,7 @@
 
         <ImageView
             android:id="@+id/square_06"
+            android:layout_margin="1dp"
             android:scaleType="fitXY"
             app:layout_column="6"
             app:layout_columnWeight="1"
@@ -125,6 +132,7 @@
 
         <ImageView
             android:id="@+id/square_10"
+            android:layout_margin="1dp"
             android:scaleType="fitXY"
             app:layout_column="0"
             app:layout_columnWeight="1"
@@ -134,6 +142,7 @@
 
         <ImageView
             android:id="@+id/square_11"
+            android:layout_margin="1dp"
             android:scaleType="fitXY"
             app:layout_column="1"
             app:layout_columnWeight="1"
@@ -143,6 +152,7 @@
 
         <ImageView
             android:id="@+id/square_12"
+            android:layout_margin="1dp"
             android:scaleType="fitXY"
             app:layout_column="2"
             app:layout_columnWeight="1"
@@ -152,6 +162,7 @@
 
         <ImageView
             android:id="@+id/square_13"
+            android:layout_margin="1dp"
             android:scaleType="fitXY"
             app:layout_column="3"
             app:layout_columnWeight="1"
@@ -161,6 +172,7 @@
 
         <ImageView
             android:id="@+id/square_14"
+            android:layout_margin="1dp"
             android:scaleType="fitXY"
             app:layout_column="4"
             app:layout_columnWeight="1"
@@ -170,6 +182,7 @@
 
         <ImageView
             android:id="@+id/square_15"
+            android:layout_margin="1dp"
             android:scaleType="fitXY"
             app:layout_column="5"
             app:layout_columnWeight="1"
@@ -179,6 +192,7 @@
 
         <ImageView
             android:id="@+id/square_16"
+            android:layout_margin="1dp"
             android:scaleType="fitXY"
             app:layout_column="6"
             app:layout_columnWeight="1"
@@ -188,6 +202,7 @@
 
         <ImageView
             android:id="@+id/square_20"
+            android:layout_margin="1dp"
             android:scaleType="fitXY"
             app:layout_column="0"
             app:layout_columnWeight="1"
@@ -197,6 +212,7 @@
 
         <ImageView
             android:id="@+id/square_21"
+            android:layout_margin="1dp"
             android:scaleType="fitXY"
             app:layout_column="1"
             app:layout_columnWeight="1"
@@ -206,6 +222,7 @@
 
         <ImageView
             android:id="@+id/square_22"
+            android:layout_margin="1dp"
             android:scaleType="fitXY"
             app:layout_column="2"
             app:layout_columnWeight="1"
@@ -215,6 +232,7 @@
 
         <ImageView
             android:id="@+id/square_23"
+            android:layout_margin="1dp"
             android:scaleType="fitXY"
             app:layout_column="3"
             app:layout_columnWeight="1"
@@ -224,6 +242,7 @@
 
         <ImageView
             android:id="@+id/square_24"
+            android:layout_margin="1dp"
             android:scaleType="fitXY"
             app:layout_column="4"
             app:layout_columnWeight="1"
@@ -233,6 +252,7 @@
 
         <ImageView
             android:id="@+id/square_25"
+            android:layout_margin="1dp"
             android:scaleType="fitXY"
             app:layout_column="5"
             app:layout_columnWeight="1"
@@ -242,6 +262,7 @@
 
         <ImageView
             android:id="@+id/square_26"
+            android:layout_margin="1dp"
             android:scaleType="fitXY"
             app:layout_column="6"
             app:layout_columnWeight="1"
@@ -251,6 +272,7 @@
 
         <ImageView
             android:id="@+id/square_30"
+            android:layout_margin="1dp"
             android:scaleType="fitXY"
             app:layout_column="0"
             app:layout_columnWeight="1"
@@ -260,6 +282,7 @@
 
         <ImageView
             android:id="@+id/square_31"
+            android:layout_margin="1dp"
             android:scaleType="fitXY"
             app:layout_column="1"
             app:layout_columnWeight="1"
@@ -269,6 +292,7 @@
 
         <ImageView
             android:id="@+id/square_32"
+            android:layout_margin="1dp"
             android:scaleType="fitXY"
             app:layout_column="2"
             app:layout_columnWeight="1"
@@ -278,6 +302,7 @@
 
         <ImageView
             android:id="@+id/square_33"
+            android:layout_margin="1dp"
             android:scaleType="fitXY"
             app:layout_column="3"
             app:layout_columnWeight="1"
@@ -287,6 +312,7 @@
 
         <ImageView
             android:id="@+id/square_34"
+            android:layout_margin="1dp"
             android:scaleType="fitXY"
             app:layout_column="4"
             app:layout_columnWeight="1"
@@ -296,6 +322,7 @@
 
         <ImageView
             android:id="@+id/square_35"
+            android:layout_margin="1dp"
             android:scaleType="fitXY"
             app:layout_column="5"
             app:layout_columnWeight="1"
@@ -305,6 +332,7 @@
 
         <ImageView
             android:id="@+id/square_36"
+            android:layout_margin="1dp"
             android:scaleType="fitXY"
             app:layout_column="6"
             app:layout_columnWeight="1"
@@ -314,6 +342,7 @@
 
         <ImageView
             android:id="@+id/square_40"
+            android:layout_margin="1dp"
             android:scaleType="fitXY"
             app:layout_column="0"
             app:layout_columnWeight="1"
@@ -323,6 +352,7 @@
 
         <ImageView
             android:id="@+id/square_41"
+            android:layout_margin="1dp"
             android:scaleType="fitXY"
             app:layout_column="1"
             app:layout_columnWeight="1"
@@ -332,6 +362,7 @@
 
         <ImageView
             android:id="@+id/square_42"
+            android:layout_margin="1dp"
             android:scaleType="fitXY"
             app:layout_column="2"
             app:layout_columnWeight="1"
@@ -341,6 +372,7 @@
 
         <ImageView
             android:id="@+id/square_43"
+            android:layout_margin="1dp"
             android:scaleType="fitXY"
             app:layout_column="3"
             app:layout_columnWeight="1"
@@ -350,6 +382,7 @@
 
         <ImageView
             android:id="@+id/square_44"
+            android:layout_margin="1dp"
             android:scaleType="fitXY"
             app:layout_column="4"
             app:layout_columnWeight="1"
@@ -359,6 +392,7 @@
 
         <ImageView
             android:id="@+id/square_45"
+            android:layout_margin="1dp"
             android:scaleType="fitXY"
             app:layout_column="5"
             app:layout_columnWeight="1"
@@ -368,6 +402,7 @@
 
         <ImageView
             android:id="@+id/square_46"
+            android:layout_margin="1dp"
             android:scaleType="fitXY"
             app:layout_column="6"
             app:layout_columnWeight="1"
@@ -377,6 +412,7 @@
 
         <ImageView
             android:id="@+id/square_50"
+            android:layout_margin="1dp"
             android:scaleType="fitXY"
             app:layout_column="0"
             app:layout_columnWeight="1"
@@ -386,6 +422,7 @@
 
         <ImageView
             android:id="@+id/square_51"
+            android:layout_margin="1dp"
             android:scaleType="fitXY"
             app:layout_column="1"
             app:layout_columnWeight="1"
@@ -395,6 +432,7 @@
 
         <ImageView
             android:id="@+id/square_52"
+            android:layout_margin="1dp"
             android:scaleType="fitXY"
             app:layout_column="2"
             app:layout_columnWeight="1"
@@ -404,6 +442,7 @@
 
         <ImageView
             android:id="@+id/square_53"
+            android:layout_margin="1dp"
             android:scaleType="fitXY"
             app:layout_column="3"
             app:layout_columnWeight="1"
@@ -413,6 +452,7 @@
 
         <ImageView
             android:id="@+id/square_54"
+            android:layout_margin="1dp"
             android:scaleType="fitXY"
             app:layout_column="4"
             app:layout_columnWeight="1"
@@ -422,6 +462,7 @@
 
         <ImageView
             android:id="@+id/square_55"
+            android:layout_margin="1dp"
             android:scaleType="fitXY"
             app:layout_column="5"
             app:layout_columnWeight="1"
@@ -431,6 +472,7 @@
 
         <ImageView
             android:id="@+id/square_56"
+            android:layout_margin="1dp"
             android:scaleType="fitXY"
             app:layout_column="6"
             app:layout_columnWeight="1"
@@ -440,6 +482,7 @@
 
         <ImageView
             android:id="@+id/square_60"
+            android:layout_margin="1dp"
             android:scaleType="fitXY"
             app:layout_column="0"
             app:layout_columnWeight="1"
@@ -449,6 +492,7 @@
 
         <ImageView
             android:id="@+id/square_61"
+            android:layout_margin="1dp"
             android:scaleType="fitXY"
             app:layout_column="1"
             app:layout_columnWeight="1"
@@ -458,6 +502,7 @@
 
         <ImageView
             android:id="@+id/square_62"
+            android:layout_margin="1dp"
             android:scaleType="fitXY"
             app:layout_column="2"
             app:layout_columnWeight="1"
@@ -467,6 +512,7 @@
 
         <ImageView
             android:id="@+id/square_63"
+            android:layout_margin="1dp"
             android:scaleType="fitXY"
             app:layout_column="3"
             app:layout_columnWeight="1"
@@ -476,6 +522,7 @@
 
         <ImageView
             android:id="@+id/square_64"
+            android:layout_margin="1dp"
             android:scaleType="fitXY"
             app:layout_column="4"
             app:layout_columnWeight="1"
@@ -485,6 +532,7 @@
 
         <ImageView
             android:id="@+id/square_65"
+            android:layout_margin="1dp"
             android:scaleType="fitXY"
             app:layout_column="5"
             app:layout_columnWeight="1"
@@ -494,6 +542,7 @@
 
         <ImageView
             android:id="@+id/square_66"
+            android:layout_margin="1dp"
             android:scaleType="fitXY"
             app:layout_column="6"
             app:layout_columnWeight="1"
