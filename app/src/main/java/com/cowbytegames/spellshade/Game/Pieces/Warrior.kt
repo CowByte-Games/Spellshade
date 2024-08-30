@@ -61,10 +61,6 @@ class Warrior(
         TODO("Not yet implemented")
     }
 
-    override fun heal(position: Pair<Int, Int>) {
-        TODO("Not yet implemented")
-    }
-
     override fun shield(position: Pair<Int, Int>) {
         TODO("Not yet implemented")
     }

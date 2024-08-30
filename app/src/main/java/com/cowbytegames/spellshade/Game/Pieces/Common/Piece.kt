@@ -27,10 +27,16 @@ interface Piece {
     }
     fun availableMoves(board: Board): ArrayList<Pair<Int, Int>>
     fun attack(position: Pair<Int, Int>)
-    fun heal(position: Pair<Int, Int>)
+    fun heal(heal: Int) {
+        health += heal
+        health = minOf(health, maxHealth)
+    }
     fun shield(position: Pair<Int, Int>)
     fun stun(position: Pair<Int, Int>)
     fun passive(board: Board)
+    fun takeDamage(damage: Int) {
+        health -= damage
+    }
 
     fun isTurn(board: Board): Boolean {
         return board.getActivePlayer() == player
