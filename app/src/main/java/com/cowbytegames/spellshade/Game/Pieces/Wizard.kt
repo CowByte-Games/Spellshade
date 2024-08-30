@@ -20,10 +20,12 @@ class Wizard(
     override var isStunned: Boolean = false
     override var stunnedDuration: Int = 0
 
+    override var isMovePhase: Boolean = true
+
     override fun availableMoves(board: Board): ArrayList<Pair<Int,Int>> {
         val squares : ArrayList<Pair<Int, Int>> = arrayListOf()
 
-        if (!isTurn(board) || board.getActionPoints() < 2 || isStunned) {
+        if (!isTurn(board) || !isMovePhase || board.getActionPoints() < 2 || isStunned) {
             return squares
         }
 

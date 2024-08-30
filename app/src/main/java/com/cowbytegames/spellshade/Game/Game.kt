@@ -8,6 +8,7 @@ class Game(val board: Board, val narratorTextView: TextView, val actionPointText
     fun endTurn() {
         GlobalScope.launch(Dispatchers.Main) {
             board.resetActionPoints()
+            resetIsMovePhase()
 
             executeDamagePassives()
             removeDeadPieces()
@@ -104,6 +105,17 @@ class Game(val board: Board, val narratorTextView: TextView, val actionPointText
             for (j in 0 until 7) {
                 when (val piece = board.get(i, j)) {
                     is Commander -> piece.passive(board)
+                }
+            }
+        }
+    }
+
+    private fun resetIsMovePhase() {
+        for (i in 0 until 7) {
+            for (j in 0 until 7) {
+                val piece = board.get(i, j)
+                if (piece != null) {
+                    piece.isMovePhase = true
                 }
             }
         }

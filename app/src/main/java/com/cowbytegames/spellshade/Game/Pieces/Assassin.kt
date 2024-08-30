@@ -20,6 +20,8 @@ class Assassin(
     override var isStunned: Boolean = false
     override var stunnedDuration: Int = 0
 
+    override var isMovePhase: Boolean = true
+
     override fun availableMoves(board: Board): ArrayList<Pair<Int,Int>> {
         return arrayListOf()
     }

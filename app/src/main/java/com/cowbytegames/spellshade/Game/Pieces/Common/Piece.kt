@@ -19,11 +19,14 @@ interface Piece {
 
     var currPos: Pair<Int,Int>
 
+    var isMovePhase: Boolean
+
     fun move(position: Pair<Int, Int>, board: Board) {
         board.set(currPos.first, currPos.second, null)
         currPos = position
         board.set(currPos.first, currPos.second, this)
         board.useActionPoints(2)
+        isMovePhase = false
     }
     fun availableMoves(board: Board): ArrayList<Pair<Int, Int>>
     fun attack(position: Pair<Int, Int>)

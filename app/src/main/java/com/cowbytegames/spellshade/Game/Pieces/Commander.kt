@@ -20,10 +20,12 @@ class Commander(
     override var isStunned: Boolean = false
     override var stunnedDuration: Int = 0
 
+    override var isMovePhase: Boolean = true
+
     override fun availableMoves(board: Board): ArrayList<Pair<Int,Int>> {
         val squares : ArrayList<Pair<Int, Int>> = arrayListOf()
 
-        if (!isTurn(board) || isStunned) {
+        if (!isTurn(board) || !isMovePhase || isStunned) {
             return squares
         }
 
