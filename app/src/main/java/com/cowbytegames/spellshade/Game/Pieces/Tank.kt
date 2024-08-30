@@ -61,6 +61,13 @@ class Tank(
     }
 
     override fun passive(board: Board) {
-
+        for (i in currPos.first-1..currPos.first+1) {
+            for (j in currPos.second-1..currPos.second+1) {
+                val piece = board.get(i, j)
+                if (piece != null) {
+                    piece.shield += shieldStrength
+                }
+            }
+        }
     }
 }

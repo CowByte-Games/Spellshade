@@ -5,6 +5,11 @@ import com.cowbytegames.spellshade.Game.Pieces.*
 import kotlinx.coroutines.*
 
 class Game(val board: Board, val narratorTextView: TextView, val actionPointTextView: TextView, private val onEndTurnComplete: () -> Unit,){
+
+    init {
+        executeNonDamagePassives()
+    }
+
     fun endTurn() {
         GlobalScope.launch(Dispatchers.Main) {
             board.resetActionPoints()
