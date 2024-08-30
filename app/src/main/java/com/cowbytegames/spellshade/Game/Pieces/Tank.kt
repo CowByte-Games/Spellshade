@@ -20,12 +20,26 @@ class Tank(
     override var isStunned: Boolean = false
     override var stunnedDuration: Int = 0
 
-    override fun move(position: Pair<Int, Int>, board: Board) {
-        TODO("Not yet implemented")
-    }
-
     override fun availableMoves(board: Board): ArrayList<Pair<Int,Int>> {
-        return arrayListOf()
+        val squares : ArrayList<Pair<Int, Int>> = arrayListOf()
+
+        val directions = listOf(
+            Pair(1, -1), Pair(1, 1), Pair(-1, 1), Pair(-1, -1),
+            Pair(1, 0), Pair(0, 1), Pair(-1, 0), Pair(0, -1)
+        )
+
+        for ((rowOffset, colOffset) in directions) {
+            val newRow = currPos.first + rowOffset
+            val newCol = currPos.second + colOffset
+
+            if ((newRow < 7 && newCol < 7) && (newRow >= 0 && newCol >= 0)) {
+                if (board.get(newRow, newCol) == null) {
+                    squares.add(Pair(newRow, newCol))
+                }
+            }
+        }
+
+        return squares
     }
 
     override fun attack(position: Pair<Int, Int>) {
