@@ -4,9 +4,11 @@ import android.widget.TextView
 import com.cowbytegames.spellshade.Game.Pieces.*
 import kotlinx.coroutines.*
 
-class Game(val board: Board, val narratorTextView: TextView, private val onEndTurnComplete: () -> Unit,){
+class Game(val board: Board, val narratorTextView: TextView, val actionPointTextView: TextView, private val onEndTurnComplete: () -> Unit,){
     fun endTurn() {
         GlobalScope.launch(Dispatchers.Main) {
+            board.resetActionPoints()
+
             executeDamagePassives()
             removeDeadPieces()
             board.renderPieces()
@@ -18,6 +20,7 @@ class Game(val board: Board, val narratorTextView: TextView, private val onEndTu
             board.renderPieces()
 
             board.flipActivePlayer()
+            actionPointTextView.text = "Action Points: ${board.getActionPoints()}"
             onEndTurnComplete()
         }
     }

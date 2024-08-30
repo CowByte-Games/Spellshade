@@ -23,6 +23,10 @@ class Tank(
     override fun availableMoves(board: Board): ArrayList<Pair<Int,Int>> {
         val squares : ArrayList<Pair<Int, Int>> = arrayListOf()
 
+        if (!isTurn(board) || board.getActionPoints() < 2 || isStunned) {
+            return squares
+        }
+
         val directions = listOf(
             Pair(1, -1), Pair(1, 1), Pair(-1, 1), Pair(-1, -1),
             Pair(1, 0), Pair(0, 1), Pair(-1, 0), Pair(0, -1)

@@ -24,6 +24,7 @@ class GameActivity : ComponentActivity() {
     private lateinit var gridLayout: GridLayout
     private lateinit var boardView: ImageView
     private lateinit var narratorTextView: TextView
+    private lateinit var actionPointTextView: TextView
 
     private lateinit var board: Board
     private lateinit var game: Game
@@ -41,6 +42,7 @@ class GameActivity : ComponentActivity() {
         gridLayout = findViewById(R.id.board_grid)
         boardView = findViewById(R.id.board)
         narratorTextView = findViewById(R.id.textView_narrator)
+        actionPointTextView = findViewById(R.id.textView_actionPoints)
         imageViews = arrayOf(
             findViewById(R.id.square_00), findViewById(R.id.square_01), findViewById(R.id.square_02),
             findViewById(R.id.square_03), findViewById(R.id.square_04), findViewById(R.id.square_05),
@@ -62,7 +64,7 @@ class GameActivity : ComponentActivity() {
         )
 
         board = Board(imageViews)
-        game = Game(board, narratorTextView, this::doneProcessingCallBack)
+        game = Game(board, narratorTextView, actionPointTextView, this::doneProcessingCallBack)
         renderLayout()
         setPieceOnClick()
     }
@@ -71,6 +73,7 @@ class GameActivity : ComponentActivity() {
         renderBoardBackground()
         board.fixCellImageSize(gridLayout, boardView)
         board.renderPieces()
+        actionPointTextView.text = "Action Points: ${board.getActionPoints()}"
     }
 
     private fun renderBoardBackground() {
@@ -148,6 +151,7 @@ class GameActivity : ComponentActivity() {
             """.trimIndent()
         }
 
+        actionPointTextView.text = "Action Points: ${board.getActionPoints()}"
         isProcessingClick = false
     }
 

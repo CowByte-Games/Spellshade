@@ -23,6 +23,7 @@ interface Piece {
         board.set(currPos.first, currPos.second, null)
         currPos = position
         board.set(currPos.first, currPos.second, this)
+        board.useActionPoints(2)
     }
     fun availableMoves(board: Board): ArrayList<Pair<Int, Int>>
     fun attack(position: Pair<Int, Int>)

@@ -563,4 +563,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView_pieceStats" />
 
+    <TextView
+        android:id="@+id/textView_actionPoints"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/button_endTurn"
+        app:layout_constraintEnd_toStartOf="@+id/button_endTurn"
+        app:layout_constraintTop_toTopOf="@+id/button_endTurn" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
