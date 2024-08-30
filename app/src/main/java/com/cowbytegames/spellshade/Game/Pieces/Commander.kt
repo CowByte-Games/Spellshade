@@ -21,7 +21,38 @@ class Commander(
     override var stunnedDuration: Int = 0
 
     override fun availableMoves(board: Board): ArrayList<Pair<Int,Int>> {
-        return arrayListOf()
+        val squares : ArrayList<Pair<Int, Int>> = arrayListOf()
+
+        if (!isTurn(board) || isStunned) {
+            return squares
+        }
+
+        for (i in currPos.first+1 until 7) {
+            if(board.get(i, currPos.second) == null) {
+                squares.add(Pair(i, currPos.second))
+            }
+            else { break }
+        }
+        for (i in currPos.first-1 downTo 0) {
+            if(board.get(i, currPos.second) == null) {
+                squares.add(Pair(i, currPos.second))
+            }
+            else { break }
+        }
+        for (i in currPos.second+1 until 7) {
+            if(board.get(currPos.first, i) == null) {
+                squares.add(Pair(currPos.first, i))
+            }
+            else { break }
+        }
+        for (i in currPos.second-1 downTo 0) {
+            if(board.get(currPos.first, i) == null) {
+                squares.add(Pair(currPos.first, i))
+            }
+            else { break }
+        }
+
+        return squares
     }
 
     override fun attack(position: Pair<Int, Int>) {
