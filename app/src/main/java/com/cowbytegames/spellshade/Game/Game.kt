@@ -113,7 +113,7 @@ class Game(val board: Board, val narratorTextView: TextView, val actionPointText
         for (i in 0 until 7) {
             for (j in 0 until 7) {
                 val piece = board.get(i, j)
-                if (piece?.health == 0) {
+                if (piece != null && piece.health <= 0) {
                     board.set(i,j,null)
                 }
             }
