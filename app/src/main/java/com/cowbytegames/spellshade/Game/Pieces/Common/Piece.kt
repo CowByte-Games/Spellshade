@@ -13,6 +13,7 @@ interface Piece {
     var baseDamage: Int
     var damage: Int
     var heal: Int
+    var moveCost: Int
 
     var isStunned: Boolean
     var stunnedDuration: Int
@@ -25,7 +26,6 @@ interface Piece {
         board.set(currPos.first, currPos.second, null)
         currPos = position
         board.set(currPos.first, currPos.second, this)
-        board.useActionPoints(2)
         isMovePhase = false
     }
     fun availableMoves(board: Board): ArrayList<Pair<Int, Int>>
@@ -35,7 +35,10 @@ interface Piece {
         health = minOf(health, maxHealth)
     }
     fun shield(position: Pair<Int, Int>)
-    fun stun(position: Pair<Int, Int>)
+    fun stun(position: Pair<Int, Int>) {
+        isStunned = true
+        stunnedDuration = 2
+    }
     fun passive(board: Board)
     fun takeDamage(damage: Int) {
         health -= damage
