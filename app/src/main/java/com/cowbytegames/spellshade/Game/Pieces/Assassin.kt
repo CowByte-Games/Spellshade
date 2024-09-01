@@ -31,7 +31,32 @@ class Assassin(
     }
 
     override fun availableMoves(board: Board): ArrayList<Pair<Int,Int>> {
-        return arrayListOf()
+        val squares : ArrayList<Pair<Int, Int>> = arrayListOf()
+
+        if (!isTurn(board) || board.getActionPoints() < 2 || isStunned) {
+            return squares
+        }
+
+        val directions = listOf(
+            Pair(1, -1), Pair(1, 1), Pair(-1, 1), Pair(-1, -1),
+            Pair(1, 0), Pair(0, 1), Pair(-1, 0), Pair(0, -1),
+            Pair(2, 2), Pair(2, 0), Pair(2, -2),
+            Pair(0, 2), Pair(0, -2),
+            Pair(-2, 2), Pair(-2, 0), Pair(-2, -2)
+        )
+
+        for ((rowOffset, colOffset) in directions) {
+            val newRow = currPos.first + rowOffset
+            val newCol = currPos.second + colOffset
+
+            if ((newRow < 7 && newCol < 7) && (newRow >= 0 && newCol >= 0)) {
+                if (board.get(newRow, newCol) == null) {
+                    squares.add(Pair(newRow, newCol))
+                }
+            }
+        }
+
+        return squares
     }
 
     override fun attack(position: Pair<Int, Int>) {
