@@ -17,6 +17,7 @@ class Warrior(
     override var damage: Int = 2
     override var heal: Int = 0
     override var moveCost: Int = 2
+    override var attackCost: Int = 2
 
     override var isStunned: Boolean = false
     override var stunnedDuration: Int = 0
@@ -66,7 +67,11 @@ class Warrior(
         return squares
     }
 
-    override fun attack(position: Pair<Int, Int>) {
+    override fun attack(position: Pair<Int, Int>, board: Board) {
+        TODO("Not yet implemented")
+    }
+
+    override fun availableAttacks(board: Board): ArrayList<Pair<Int, Int>> {
         TODO("Not yet implemented")
     }
 

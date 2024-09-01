@@ -16,7 +16,8 @@ class Assassin(
     override var baseDamage: Int = 2
     override var damage: Int = 2
     override var heal: Int = 0
-    override var moveCost: Int = 2
+    override var moveCost: Int = 1
+    override var attackCost: Int = 1
 
     override var isStunned: Boolean = false
     override var stunnedDuration: Int = 0
@@ -24,6 +25,12 @@ class Assassin(
     override var isMovePhase: Boolean = true
 
     override fun move(position: Pair<Int, Int>, board: Board) {
+        val rowOffset = position.first - currPos.first
+        val colOffset = position.second - currPos.second
+        if (isAnAttack(position, board)) {
+            attack(Pair(currPos.first + rowOffset/2, currPos.second + colOffset/2), board)
+        }
+
         super.move(position, board)
 
         board.useActionPoints(moveCost)
@@ -33,7 +40,7 @@ class Assassin(
     override fun availableMoves(board: Board): ArrayList<Pair<Int,Int>> {
         val squares : ArrayList<Pair<Int, Int>> = arrayListOf()
 
-        if (!isTurn(board) || board.getActionPoints() < 2 || isStunned) {
+        if (!isTurn(board) || board.getActionPoints() < moveCost || isStunned) {
             return squares
         }
 
@@ -51,7 +58,9 @@ class Assassin(
 
             if ((newRow < 7 && newCol < 7) && (newRow >= 0 && newCol >= 0)) {
                 if (board.get(newRow, newCol) == null) {
-                    squares.add(Pair(newRow, newCol))
+                    if (!isAnAttack(Pair(newRow, newCol), board) || board.getActionPoints() >= moveCost + attackCost ) {
+                        squares.add(Pair(newRow, newCol))
+                    }
                 }
             }
         }
@@ -59,7 +68,7 @@ class Assassin(
         return squares
     }
 
-    override fun attack(position: Pair<Int, Int>) {
+    override fun availableAttacks(board: Board): ArrayList<Pair<Int, Int>> {
         TODO("Not yet implemented")
     }
 
@@ -69,5 +78,22 @@ class Assassin(
 
     override fun passive(board: Board) {
 
+    }
+
+    private fun isAnAttack(position: Pair<Int, Int>, board: Board): Boolean {
+        val rowOffset = position.first - currPos.first
+        val colOffset = position.second - currPos.second
+
+        if (Pair(rowOffset, colOffset) in listOf(
+                Pair(2, 2), Pair(2, 0), Pair(2, -2),
+                Pair(0, 2), Pair(0, -2),
+                Pair(-2, 2), Pair(-2, 0), Pair(-2, -2))
+        ) {
+            val attackedPiece = board.get(currPos.first + rowOffset/2, currPos.second + colOffset/2)
+            if (attackedPiece != null && attackedPiece.player != this.player) {
+                return true
+            }
+        }
+        return false
     }
 }

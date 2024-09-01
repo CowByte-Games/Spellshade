@@ -29,7 +29,7 @@ class Board(val imageViews: Array<ImageView>) {
         board[5][2] = Wizard(Pair(5,2), 2)
 
         board[0][0] = Assassin(Pair(0,0), 1)
-        board[0][6] = Assassin(Pair(0,0), 1)
+        board[0][6] = Assassin(Pair(0,6), 1)
         board[6][0] = Assassin(Pair(6,0), 2)
         board[6][6] = Assassin(Pair(6,6), 2)
 
