@@ -46,7 +46,13 @@ interface Piece {
     }
     fun passive(board: Board)
     fun takeDamage(damage: Int, board: Board) {
-        health -= damage
+        val actualDamage = damage - shield
+
+        if (actualDamage > 0) {
+            shield = 0
+            health -= actualDamage
+        }
+
         if (health <= 0) {
             board.set(currPos.first, currPos.second, null)
             board.renderPieces()

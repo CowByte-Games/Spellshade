@@ -129,11 +129,19 @@ class GameActivity : ComponentActivity() {
         val piece = board.get(row, column)
 
         if (selectedPiece != null) {
-            val availableMoves = selectedPiece!!.availableMoves(board)
+            if (selectedPiece!!.isMovePhase) {
+                val availableMoves = selectedPiece!!.availableMoves(board)
 
-            if (availableMoves.contains(Pair(row, column))) {
-                selectedPiece!!.move(Pair(row, column), board)
-                board.renderPieces()
+                if (availableMoves.contains(Pair(row, column))) {
+                    selectedPiece!!.move(Pair(row, column), board)
+                    board.renderPieces()
+                }
+            } else {
+                val availableAttacks = selectedPiece!!.availableAttacks(board)
+
+                if (availableAttacks.contains(Pair(row, column))) {
+                    selectedPiece!!.attack(Pair(row, column), board)
+                }
             }
 
             unselectPiece()
@@ -141,13 +149,14 @@ class GameActivity : ComponentActivity() {
         else if (piece != null){
             selectedPiece = piece
             if (piece.isMovePhase) {
-                val availableMoves = selectedPiece!!.availableMoves(board)
+                val availableMoves = piece.availableMoves(board)
                 board.setAvailableMovesRender(availableMoves)
             } else {
-                val availableAttacks = selectedPiece!!.availableAttacks(board)
+                val availableAttacks = piece.availableAttacks(board)
                 board.setAvailableAttacksRender(availableAttacks)
             }
-            pieceNameTextView.text = selectedPiece!!.pieceName
+
+            pieceNameTextView.text = piece.pieceName
             pieceStatsTextView.text = """
                 Health: ${selectedPiece!!.health}
                 Shield: ${selectedPiece!!.shield}

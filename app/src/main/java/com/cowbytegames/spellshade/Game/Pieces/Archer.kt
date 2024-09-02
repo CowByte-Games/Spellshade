@@ -57,6 +57,11 @@ class Archer(
         return squares
     }
 
+    override fun attack(position: Pair<Int, Int>, board: Board) {
+        super.attack(position, board)
+        isMovePhase = true
+    }
+
     override fun availableAttacks(board: Board): ArrayList<Pair<Int, Int>> {
         val squares : ArrayList<Pair<Int, Int>> = arrayListOf()
 
