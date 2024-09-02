@@ -67,12 +67,23 @@ class Warrior(
         return squares
     }
 
-    override fun attack(position: Pair<Int, Int>, board: Board) {
-        TODO("Not yet implemented")
-    }
-
     override fun availableAttacks(board: Board): ArrayList<Pair<Int, Int>> {
-        return arrayListOf()
+        val squares : ArrayList<Pair<Int, Int>> = arrayListOf()
+
+        if (!isTurn(board) || isMovePhase || board.getActionPoints() < attackCost || isStunned) {
+            return squares
+        }
+
+        val newRow = if (player == 1) currPos.first + 1 else currPos.first - 1
+
+        if ((newRow < 7) && (newRow >= 0)) {
+            val piece = board.get(newRow, currPos.second)
+            if (piece != null && piece.player != this.player) {
+                squares.add(Pair(newRow, currPos.second))
+            }
+        }
+
+        return squares
     }
 
     override fun shield(position: Pair<Int, Int>) {

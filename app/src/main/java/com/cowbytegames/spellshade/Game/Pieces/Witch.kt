@@ -81,7 +81,8 @@ class Witch(
             val newCol = currPos.second + colOffset
 
             if ((newRow < 7 && newCol < 7) && (newRow >= 0 && newCol >= 0)) {
-                if (board.get(newRow, newCol) != null) {
+                val piece = board.get(newRow, newCol)
+                if (piece != null && piece.player != this.player) {
                     squares.add(Pair(newRow, newCol))
                 }
             }
