@@ -16,7 +16,7 @@ class Archer(
     override var baseDamage: Int = 2
     override var damage: Int = 2
     override var heal: Int = 0
-    override var moveCost: Int = 2
+    override var moveCost: Int = 1
     override var attackCost: Int = 2
 
     override var isStunned: Boolean = false
@@ -31,7 +31,30 @@ class Archer(
     }
 
     override fun availableMoves(board: Board): ArrayList<Pair<Int,Int>> {
-        return arrayListOf()
+        val squares : ArrayList<Pair<Int, Int>> = arrayListOf()
+
+        if (!isTurn(board) || !isMovePhase || board.getActionPoints() < moveCost || isStunned) {
+            return squares
+        }
+
+        val directions = listOf(
+            Pair(0, -1), Pair(0, -2), Pair(0, 1), Pair(0, 2),
+            Pair(1, 0), Pair(2, 0), Pair(-1, 0), Pair(-2, 0),
+            Pair(-1, -1), Pair(-1, 1), Pair(1, 1), Pair(1, -1)
+        )
+
+        for ((rowOffset, colOffset) in directions) {
+            val newRow = currPos.first + rowOffset
+            val newCol = currPos.second + colOffset
+
+            if ((newRow < 7 && newCol < 7) && (newRow >= 0 && newCol >= 0)) {
+                if (board.get(newRow, newCol) == null && isBlockedPath(Pair(rowOffset, colOffset), board)) {
+                    squares.add(Pair(newRow, newCol))
+                }
+            }
+        }
+
+        return squares
     }
 
     override fun availableAttacks(board: Board): ArrayList<Pair<Int, Int>> {
@@ -44,5 +67,17 @@ class Archer(
 
     override fun passive(board: Board) {
 
+    }
+
+    private fun isBlockedPath(offset: Pair<Int, Int>, board: Board): Boolean {
+        val adjacentPositions = mapOf(
+            Pair(2, 0) to Pair(currPos.first + 1, currPos.second),
+            Pair(-2, 0) to Pair(currPos.first - 1, currPos.second),
+            Pair(0, 2) to Pair(currPos.first, currPos.second + 1),
+            Pair(0, -2) to Pair(currPos.first, currPos.second - 1)
+        )
+
+        val adjacentPosition = adjacentPositions[offset] ?: return true
+        return board.get(adjacentPosition.first, adjacentPosition.second) == null
     }
 }
