@@ -140,9 +140,13 @@ class GameActivity : ComponentActivity() {
         }
         else if (piece != null){
             selectedPiece = piece
-            val availableMoves = selectedPiece!!.availableMoves(board)
-
-            board.setAvailableMovesRender(availableMoves)
+            if (piece.isMovePhase) {
+                val availableMoves = selectedPiece!!.availableMoves(board)
+                board.setAvailableMovesRender(availableMoves)
+            } else {
+                val availableAttacks = selectedPiece!!.availableAttacks(board)
+                board.setAvailableAttacksRender(availableAttacks)
+            }
             pieceNameTextView.text = selectedPiece!!.pieceName
             pieceStatsTextView.text = """
                 Health: ${selectedPiece!!.health}
@@ -162,7 +166,7 @@ class GameActivity : ComponentActivity() {
     }
 
     private fun unselectPiece() {
-        board.resetAvailableMovesRender()
+        board.resetAvailableAttacksAndMovesRender()
         pieceNameTextView.text = ""
         pieceStatsTextView.text = ""
         selectedPiece = null

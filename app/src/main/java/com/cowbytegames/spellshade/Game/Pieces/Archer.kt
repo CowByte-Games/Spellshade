@@ -37,13 +37,13 @@ class Archer(
             return squares
         }
 
-        val directions = listOf(
+        val offsets = listOf(
             Pair(0, -1), Pair(0, -2), Pair(0, 1), Pair(0, 2),
             Pair(1, 0), Pair(2, 0), Pair(-1, 0), Pair(-2, 0),
             Pair(-1, -1), Pair(-1, 1), Pair(1, 1), Pair(1, -1)
         )
 
-        for ((rowOffset, colOffset) in directions) {
+        for ((rowOffset, colOffset) in offsets) {
             val newRow = currPos.first + rowOffset
             val newCol = currPos.second + colOffset
 
@@ -58,7 +58,37 @@ class Archer(
     }
 
     override fun availableAttacks(board: Board): ArrayList<Pair<Int, Int>> {
-        TODO("Not yet implemented")
+        val squares : ArrayList<Pair<Int, Int>> = arrayListOf()
+
+        if (!isTurn(board) || isMovePhase || board.getActionPoints() < attackCost || isStunned) {
+            return squares
+        }
+
+        for (i in currPos.first - 2..currPos.first + 2) {
+            for (j in currPos.second - 2..currPos.second + 2) {
+                val piece = board.get(i, j)
+                if (piece != null && piece.player != this.player) {
+                    squares.add(Pair(i,j))
+                }
+            }
+        }
+
+        val offsets = listOf(
+            Pair(0, -3), Pair(0, 3), Pair(3, 0), Pair(-3, 0),
+        )
+        for ((rowOffset, colOffset) in offsets) {
+            val newRow = currPos.first + rowOffset
+            val newCol = currPos.second + colOffset
+
+            if ((newRow < 7 && newCol < 7) && (newRow >= 0 && newCol >= 0)) {
+                val piece = board.get(newRow, newCol)
+                if (piece != null && piece.player != this.player) {
+                    squares.add(Pair(newRow, newCol))
+                }
+            }
+        }
+
+        return squares
     }
 
     override fun shield(position: Pair<Int, Int>) {

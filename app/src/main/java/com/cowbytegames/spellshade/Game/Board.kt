@@ -130,15 +130,14 @@ class Board(val imageViews: Array<ImageView>) {
         }
     }
 
-    fun resetAvailableMovesRender() {
+    fun resetAvailableAttacksAndMovesRender() {
         for (imageView in imageViews) {
             val background = imageView.background
-            if (background is ColorDrawable && background.color == Color.GREEN) {
+            if (background is ColorDrawable && (background.color == Color.GREEN || background.color == Color.RED)) {
                 imageView.setBackgroundColor(Color.TRANSPARENT)
             }
         }
     }
-
     fun setAvailableMovesRender(cells: ArrayList<Pair<Int, Int>>) {
         for (cell in cells) {
             val (r, c) = cell
@@ -146,6 +145,15 @@ class Board(val imageViews: Array<ImageView>) {
             val iV = imageViews[i]
 
             iV.setBackgroundColor(Color.GREEN)
+        }
+    }
+    fun setAvailableAttacksRender(cells: ArrayList<Pair<Int, Int>>) {
+        for (cell in cells) {
+            val (r, c) = cell
+            val i = r * 7 + c
+            val iV = imageViews[i]
+
+            iV.setBackgroundColor(Color.RED)
         }
     }
 

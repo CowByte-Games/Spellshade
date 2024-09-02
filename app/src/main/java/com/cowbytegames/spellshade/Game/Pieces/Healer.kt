@@ -53,7 +53,7 @@ class Healer(
     }
 
     override fun availableAttacks(board: Board): ArrayList<Pair<Int, Int>> {
-        TODO("Not yet implemented")
+        return arrayListOf()
     }
 
     override fun shield(position: Pair<Int, Int>) {
