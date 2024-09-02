@@ -33,6 +33,7 @@ interface Piece {
     fun attack(position: Pair<Int, Int>, board: Board) {
         board.get(position.first, position.second)?.takeDamage(damage, board)
         board.useActionPoints(attackCost)
+        board.renderPieces()
     }
     fun availableAttacks(board: Board): ArrayList<Pair<Int, Int>>
     fun heal(heal: Int) {
@@ -40,7 +41,7 @@ interface Piece {
         health = minOf(health, maxHealth)
     }
     fun shield(position: Pair<Int, Int>)
-    fun stun(position: Pair<Int, Int>) {
+    fun stun() {
         isStunned = true
         stunnedDuration = 2
     }
