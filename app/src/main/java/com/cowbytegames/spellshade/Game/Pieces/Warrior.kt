@@ -34,7 +34,7 @@ class Warrior(
     override fun availableMoves(board: Board): ArrayList<Pair<Int, Int>> {
         val squares : ArrayList<Pair<Int, Int>> = arrayListOf()
 
-        if (!isTurn(board) || !isMovePhase || board.getActionPoints() < 2 || isStunned) {
+        if (!isTurn(board) || !isMovePhase || board.getActionPoints() < moveCost || isStunned) {
             return squares
         }
 

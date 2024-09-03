@@ -34,7 +34,7 @@ class Healer(
     override fun availableMoves(board: Board): ArrayList<Pair<Int,Int>> {
         val squares : ArrayList<Pair<Int, Int>> = arrayListOf()
 
-        if (!isTurn(board) || !isMovePhase || board.getActionPoints() < 2 || isStunned) {
+        if (!isTurn(board) || !isMovePhase || board.getActionPoints() < moveCost || isStunned) {
             return squares
         }
 
@@ -50,11 +50,34 @@ class Healer(
     }
 
     override fun attack(position: Pair<Int, Int>, board: Board) {
-        TODO("Not yet implemented")
+        for (i in 0 until 7) {
+            for (j in 0 until 7) {
+                val piece = board.get(i, j)
+                if (piece != null && piece.player == this.player) {
+                    piece.heal(healStrength)
+                }
+            }
+        }
+        board.useActionPoints(attackCost)
     }
 
     override fun availableAttacks(board: Board): ArrayList<Pair<Int, Int>> {
-        return arrayListOf()
+        val squares : ArrayList<Pair<Int, Int>> = arrayListOf()
+
+        if (!isTurn(board) || isMovePhase || board.getActionPoints() < attackCost || isStunned) {
+            return squares
+        }
+
+        for (i in 0 until 7) {
+            for (j in 0 until 7) {
+                val piece = board.get(i, j)
+                if (piece != null && piece.player == player) {
+                    squares.add(Pair(i,j))
+                }
+            }
+        }
+
+        return squares
     }
 
     override fun shield(position: Pair<Int, Int>) {
@@ -69,8 +92,8 @@ class Healer(
         for (i in currPos.first-1..currPos.first+1) {
             for (j in currPos.second-1..currPos.second+1) {
                 val piece = board.get(i, j)
-                if (piece != null && piece.player == player) {
-                    piece.health = minOf(maxHealth, piece.health + healStrength)
+                if (piece != null && piece.player == this.player) {
+                    piece.heal(healStrength)
                 }
             }
         }

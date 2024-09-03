@@ -33,7 +33,7 @@ class Tank(
     override fun availableMoves(board: Board): ArrayList<Pair<Int,Int>> {
         val squares : ArrayList<Pair<Int, Int>> = arrayListOf()
 
-        if (!isTurn(board) || !isMovePhase || board.getActionPoints() < 2 || isStunned) {
+        if (!isTurn(board) || !isMovePhase || board.getActionPoints() < moveCost || isStunned) {
             return squares
         }
 
@@ -76,7 +76,7 @@ class Tank(
         for (i in currPos.first-1..currPos.first+1) {
             for (j in currPos.second-1..currPos.second+1) {
                 val piece = board.get(i, j)
-                if (piece != null && piece.player == player) {
+                if (piece != null && piece.player == this.player) {
                     piece.shield += shieldStrength
                 }
             }
