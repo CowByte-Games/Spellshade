@@ -11,7 +11,6 @@ interface Piece {
     var shield: Int
     var baseDamage: Int
     var damage: Int
-    var heal: Int
     var moveCost: Int
     var attackCost: Int
 

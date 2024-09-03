@@ -2,6 +2,7 @@ package com.cowbytegames.spellshade.Game.Pieces
 
 import com.cowbytegames.spellshade.Game.Board
 import com.cowbytegames.spellshade.Game.Pieces.Common.Piece
+import kotlin.math.max
 
 class Healer(
     override var currPos: Pair<Int,Int>, override var player: Int
@@ -14,7 +15,6 @@ class Healer(
     override var shield: Int = 0
     override var baseDamage: Int = 2
     override var damage: Int = 2
-    override var heal: Int = 0
     override var moveCost: Int = 2
     override var attackCost: Int = 2
 
@@ -22,6 +22,8 @@ class Healer(
     override var stunnedDuration: Int = 1
 
     override var isMovePhase: Boolean = true
+
+    var healStrength: Int = 1
 
     override fun move(position: Pair<Int, Int>, board: Board) {
         super.move(position, board)
@@ -60,6 +62,17 @@ class Healer(
     }
 
     override fun passive(board: Board) {
+        if (isStunned) {
+            return
+        }
 
+        for (i in currPos.first-1..currPos.first+1) {
+            for (j in currPos.second-1..currPos.second+1) {
+                val piece = board.get(i, j)
+                if (piece != null && piece.player == player) {
+                    piece.health = minOf(maxHealth, piece.health + healStrength)
+                }
+            }
+        }
     }
 }

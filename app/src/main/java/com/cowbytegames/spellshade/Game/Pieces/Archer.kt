@@ -14,7 +14,6 @@ class Archer(
     override var shield: Int = 0
     override var baseDamage: Int = 2
     override var damage: Int = 2
-    override var heal: Int = 0
     override var moveCost: Int = 1
     override var attackCost: Int = 2
 
