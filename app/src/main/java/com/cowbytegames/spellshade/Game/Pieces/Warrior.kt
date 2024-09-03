@@ -24,10 +24,13 @@ class Warrior(
 
     override var isMovePhase: Boolean = true
 
+    var isEvolved = false
+
     override fun move(position: Pair<Int, Int>, board: Board) {
         super.move(position, board)
 
         board.useActionPoints(moveCost)
+        evolveIfPossible()
     }
 
     override fun availableMoves(board: Board): ArrayList<Pair<Int, Int>> {
@@ -38,18 +41,25 @@ class Warrior(
         }
 
         val directions: List<Pair<Int,Int>>
-        if (player == 1) {
+
+        if (!isEvolved) {
+            if (player == 1) {
+                directions = listOf(
+                    Pair(1, 0),
+                    Pair(1, 1),
+                    Pair(1, -1)
+                )
+            } else {
+                directions = listOf(
+                    Pair(-1, 0),
+                    Pair(-1, 1),
+                    Pair(-1, -1)
+                )
+            }
+        } else {
             directions = listOf(
-                Pair(1, 0),
-                Pair(1, 1),
-                Pair(1, -1)
-            )
-        }
-        else {
-            directions = listOf(
-                Pair(-1, 0),
-                Pair(-1, 1),
-                Pair(-1, -1)
+                Pair(1, -1), Pair(1, 1), Pair(-1, 1), Pair(-1, -1),
+                Pair(1, 0), Pair(0, 1), Pair(-1, 0), Pair(0, -1)
             )
         }
 
@@ -67,6 +77,31 @@ class Warrior(
         return squares
     }
 
+    override fun attack(position: Pair<Int, Int>, board: Board) {
+        if (!isEvolved) {
+            super.attack(position, board)
+        } else {
+            val rowOffset = position.first - currPos.first
+            val colOffset = position.second - currPos.second
+
+            val attackPatterns = listOf(
+                listOf(Pair(0, -1), Pair(0, -2)),
+                listOf(Pair(0, 1), Pair(0, 2)),
+                listOf(Pair(1, 0), Pair(2, 0)),
+                listOf(Pair(-1, 0), Pair(-2, 0))
+            )
+
+            for (attackPattern in attackPatterns) {
+                if (Pair(rowOffset, colOffset) in attackPattern) {
+                    aoeAttack(attackPattern, board)
+                    break
+                }
+            }
+            board.renderPieces()
+            board.useActionPoints(attackCost)
+        }
+    }
+
     override fun availableAttacks(board: Board): ArrayList<Pair<Int, Int>> {
         val squares : ArrayList<Pair<Int, Int>> = arrayListOf()
 
@@ -74,12 +109,31 @@ class Warrior(
             return squares
         }
 
-        val newRow = if (player == 1) currPos.first + 1 else currPos.first - 1
+        if (!isEvolved) {
+            val newRow = if (player == 1) currPos.first + 1 else currPos.first - 1
 
-        if ((newRow < 7) && (newRow >= 0)) {
-            val piece = board.get(newRow, currPos.second)
-            if (piece != null && piece.player != this.player) {
-                squares.add(Pair(newRow, currPos.second))
+            if ((newRow < 7) && (newRow >= 0)) {
+                val piece = board.get(newRow, currPos.second)
+                if (piece != null && piece.player != this.player) {
+                    squares.add(Pair(newRow, currPos.second))
+                }
+            }
+        } else {
+            val directions = listOf(
+                Pair(0, -1), Pair(0, -2), Pair(0, 1), Pair(0, 2),
+                Pair(1, 0), Pair(2, 0), Pair(-1, 0), Pair(-2, 0)
+            )
+
+            for ((rowOffset, colOffset) in directions) {
+                val newRow = currPos.first + rowOffset
+                val newCol = currPos.second + colOffset
+
+                if ((newRow < 7 && newCol < 7) && (newRow >= 0 && newCol >= 0)) {
+                    val piece = board.get(newRow, newCol)
+                    if (piece != null && piece.player != this.player) {
+                        squares.add(Pair(newRow, newCol))
+                    }
+                }
             }
         }
 
@@ -92,5 +146,30 @@ class Warrior(
 
     override fun passive(board: Board) {
 
+    }
+
+    private fun evolveIfPossible() {
+        if (!isEvolved &&
+            ((player == 1 && currPos.first == 6) ||
+            (player == 2 && currPos.first == 0)))
+        {
+            isEvolved = true
+            pieceName = "Berserker"
+            baseDamage += 2
+            damage += 2
+        }
+    }
+
+    private fun aoeAttack(direction: List<Pair<Int, Int>>, board: Board) {
+        for ((r, c) in direction) {
+            val newRow = currPos.first + r
+            val newCol = currPos.second + c
+            if ((newRow < 7 && newCol < 7) && (newRow >= 0 && newCol >= 0)) {
+                val piece = board.get(newRow, newCol)
+                if (piece != null && piece.player != this.player) {
+                    board.get(newRow, newCol)?.takeDamage(damage, board)
+                }
+            }
+        }
     }
 }

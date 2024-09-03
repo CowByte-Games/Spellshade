@@ -95,8 +95,10 @@ class Board(val imageViews: Array<ImageView>) {
                 }
 
                 if (piece is Warrior) {
-                    if (piece.player == 1) { imageView.setImageResource(R.drawable.blue_warrior) }
-                    else { imageView.setImageResource(R.drawable.red_warrior) }
+                    if (piece.player == 1 && !piece.isEvolved) { imageView.setImageResource(R.drawable.blue_warrior) }
+                    else if (piece.player == 2 && !piece.isEvolved) { imageView.setImageResource(R.drawable.red_warrior) }
+                    else if (piece.player == 1 && piece.isEvolved) { imageView.setImageResource(R.drawable.blue_berseker) }
+                    else if (piece.player == 2 && piece.isEvolved) { imageView.setImageResource(R.drawable.red_berserker) }
                 }
                 else if (piece is Witch) {
                     if (piece.player == 1) { imageView.setImageResource(R.drawable.blue_witch) }
