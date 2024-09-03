@@ -11,7 +11,6 @@ class Assassin(
 
     override var maxHealth: Int = 10
     override var health: Int = 10
-    override var shieldStrength: Int = 0
     override var shield: Int = 0
     override var baseDamage: Int = 2
     override var damage: Int = 2

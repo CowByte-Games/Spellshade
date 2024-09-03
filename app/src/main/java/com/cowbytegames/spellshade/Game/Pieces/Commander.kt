@@ -11,7 +11,6 @@ class Commander(
 
     override var maxHealth: Int = 10
     override var health: Int = 10
-    override var shieldStrength: Int = 0
     override var shield: Int = 0
     override var baseDamage: Int = 2
     override var damage: Int = 2
@@ -23,6 +22,8 @@ class Commander(
     override var stunnedDuration: Int = 0
 
     override var isMovePhase: Boolean = true
+
+    var buffStrength = 1
 
     override fun move(position: Pair<Int, Int>, board: Board) {
         super.move(position, board)
@@ -78,6 +79,17 @@ class Commander(
     }
 
     override fun passive(board: Board) {
+        if (isStunned) {
+            return
+        }
 
+        for (i in currPos.first-1..currPos.first+1) {
+            for (j in currPos.second-1..currPos.second+1) {
+                val piece = board.get(i, j)
+                if (piece != null && piece.player == player) {
+                    piece.damage += buffStrength
+                }
+            }
+        }
     }
 }

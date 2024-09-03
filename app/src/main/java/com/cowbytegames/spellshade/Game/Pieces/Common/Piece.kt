@@ -8,7 +8,6 @@ interface Piece {
 
     var maxHealth: Int
     var health: Int
-    var shieldStrength: Int
     var shield: Int
     var baseDamage: Int
     var damage: Int

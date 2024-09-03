@@ -11,7 +11,6 @@ class Tank(
 
     override var maxHealth: Int = 10
     override var health: Int = 10
-    override var shieldStrength: Int = 1
     override var shield: Int = 0
     override var baseDamage: Int = 2
     override var damage: Int = 2
@@ -23,6 +22,8 @@ class Tank(
     override var stunnedDuration: Int = 0
 
     override var isMovePhase: Boolean = true
+
+    var shieldStrength: Int = 1
 
     override fun move(position: Pair<Int, Int>, board: Board) {
         super.move(position, board)
