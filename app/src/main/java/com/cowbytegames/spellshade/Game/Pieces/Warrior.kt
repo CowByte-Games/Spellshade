@@ -165,7 +165,7 @@ class Warrior(
             if ((newRow < 7 && newCol < 7) && (newRow >= 0 && newCol >= 0)) {
                 val piece = board.get(newRow, newCol)
                 if (piece != null && piece.player != this.player) {
-                    board.get(newRow, newCol)?.takeDamage(damage, board)
+                    piece.takeDamage(damage, board)
                 }
             }
         }

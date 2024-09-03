@@ -86,7 +86,7 @@ class Commander(
             for (j in currPos.second-1..currPos.second+1) {
                 val piece = board.get(i, j)
                 if (piece != null && piece.player == this.player) {
-                    piece.damage += buffStrength
+                    piece.buff(buffStrength)
                 }
             }
         }

@@ -22,6 +22,8 @@ class Archer(
 
     override var isMovePhase: Boolean = true
 
+    var passiveDamage = 1
+
     override fun move(position: Pair<Int, Int>, board: Board) {
         super.move(position, board)
 
@@ -99,7 +101,22 @@ class Archer(
     }
 
     override fun passive(board: Board) {
+        if (isStunned) {
+            return
+        }
 
+        val position = findEnemyCommander(board)
+
+        if (position != null) {
+            for (i in position.first - 1..position.first + 1) {
+                for (j in position.second - 1..position.second + 1) {
+                    val piece = board.get(i, j)
+                    if (piece != null && piece.player != this.player) {
+                        piece.takeDamage(passiveDamage, board)
+                    }
+                }
+            }
+        }
     }
 
     private fun isBlockedPath(offset: Pair<Int, Int>, board: Board): Boolean {
@@ -112,5 +129,17 @@ class Archer(
 
         val adjacentPosition = adjacentPositions[offset] ?: return true
         return board.get(adjacentPosition.first, adjacentPosition.second) == null
+    }
+
+    private fun findEnemyCommander(board: Board): Pair<Int, Int>? {
+        for (i in 0 until 7) {
+            for (j in 0 until 7) {
+                val piece = board.get(i, j)
+                if (piece != null && piece is Commander && piece.player != this.player) {
+                    return Pair(i,j)
+                }
+            }
+        }
+        return null
     }
 }

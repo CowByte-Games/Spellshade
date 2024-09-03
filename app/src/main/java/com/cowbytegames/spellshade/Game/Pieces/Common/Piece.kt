@@ -47,7 +47,7 @@ interface Piece {
     fun takeDamage(damage: Int, board: Board) {
         val actualDamage = damage - shield
 
-        if (actualDamage > 0) {
+        if (actualDamage >= 0) {
             shield = 0
             health -= actualDamage
         }
@@ -56,6 +56,9 @@ interface Piece {
             board.set(currPos.first, currPos.second, null)
             board.renderPieces()
         }
+    }
+    fun buff(buffStrength: Int) {
+        damage += buffStrength
     }
 
     fun isTurn(board: Board): Boolean {
