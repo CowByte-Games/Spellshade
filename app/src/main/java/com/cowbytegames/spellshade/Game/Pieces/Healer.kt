@@ -18,8 +18,8 @@ class Healer(
     override var moveCost: Int = 2
     override var attackCost: Int = 2
 
-    override var isStunned: Boolean = true
-    override var stunnedDuration: Int = 1
+    override var isStunned: Boolean = false
+    override var stunnedDuration: Int = 0
 
     override var isMovePhase: Boolean = true
 

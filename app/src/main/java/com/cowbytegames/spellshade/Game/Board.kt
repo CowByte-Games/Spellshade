@@ -12,7 +12,7 @@ import kotlin.math.ceil
 class Board(val imageViews: Array<ImageView>) {
     val board: Array<Array<Piece?>> =  Array(7) { arrayOfNulls<Piece>(7) }
     private var activePlayer = 1
-    private var actionPoints = 2
+    private var actionPoints = 4
 
     init {
         board[1][1] = Warrior(Pair(1,1), 1)
@@ -177,6 +177,6 @@ class Board(val imageViews: Array<ImageView>) {
         actionPoints -= cost
     }
     fun resetActionPoints() {
-        actionPoints = 4
+        actionPoints = 6
     }
 }

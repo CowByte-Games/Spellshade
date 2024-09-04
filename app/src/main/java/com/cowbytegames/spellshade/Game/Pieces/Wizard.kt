@@ -57,11 +57,52 @@ class Wizard(
     }
 
     override fun attack(position:Pair<Int, Int>, board: Board) {
-        TODO("Not yet implemented")
+        val rowOffset = position.first - currPos.first
+        val colOffset = position.second - currPos.second
+
+        val attackPatterns = listOf(
+            listOf(Pair(-1, 0), Pair(-2, 0), Pair(-3, 0), Pair(-2, 1), Pair(-2, -1)),
+            listOf(Pair(0, 1), Pair(0, 2), Pair(0, 3), Pair(1, 2), Pair(-1, 2)),
+            listOf(Pair(0, -1), Pair(0, -2), Pair(0, -3), Pair(1, -2), Pair(-1, -2)),
+            listOf(Pair(1, 0), Pair(2, 0), Pair(3, 0), Pair(2, -1), Pair(2, 1))
+        )
+
+        for (attackPattern in attackPatterns) {
+            if (Pair(rowOffset, colOffset) in attackPattern) {
+                aoeAttack(attackPattern, board)
+                break
+            }
+        }
+        board.renderPieces()
+        board.useActionPoints(attackCost)
     }
 
     override fun availableAttacks(board: Board): ArrayList<Pair<Int, Int>> {
-        return arrayListOf()
+        val squares : ArrayList<Pair<Int, Int>> = arrayListOf()
+
+        if (!isTurn(board) || isMovePhase || board.getActionPoints() < attackCost || isStunned) {
+            return squares
+        }
+
+        val directions = listOf(
+            Pair(-1, 0), Pair(-2, 0), Pair(-3, 0), Pair(-2, 1), Pair(-2, -1),
+            Pair(0, 1), Pair(0, 2), Pair(0, 3), Pair(1, 2), Pair(-1, 2),
+            Pair(0, -1), Pair(0, -2), Pair(0, -3), Pair(1, -2), Pair(-1, -2),
+            Pair(1, 0), Pair(2, 0), Pair(3, 0), Pair(2, -1), Pair(2, 1)
+        )
+
+        for ((rowOffset, colOffset) in directions) {
+            val newRow = currPos.first + rowOffset
+            val newCol = currPos.second + colOffset
+
+            if ((newRow < 7 && newCol < 7) && (newRow >= 0 && newCol >= 0)) {
+                val piece = board.get(newRow, newCol)
+                if (piece != null && piece.player != this.player) {
+                    squares.add(Pair(newRow, newCol))
+                }
+            }
+        }
+        return squares
     }
 
     override fun shield(position:Pair<Int, Int>) {
@@ -70,5 +111,18 @@ class Wizard(
 
     override fun passive(board: Board) {
 
+    }
+
+    private fun aoeAttack(direction: List<Pair<Int, Int>>, board: Board) {
+        for ((r, c) in direction) {
+            val newRow = currPos.first + r
+            val newCol = currPos.second + c
+            if ((newRow < 7 && newCol < 7) && (newRow >= 0 && newCol >= 0)) {
+                val piece = board.get(newRow, newCol)
+                if (piece != null && piece.player != this.player) {
+                    piece.takeDamage(damage, board)
+                }
+            }
+        }
     }
 }
