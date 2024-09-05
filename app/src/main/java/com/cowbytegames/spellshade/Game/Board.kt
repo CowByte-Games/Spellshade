@@ -2,11 +2,13 @@ package com.cowbytegames.spellshade.Game
 
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.graphics.drawable.LayerDrawable
 import android.widget.ImageView
 import androidx.gridlayout.widget.GridLayout
 import com.cowbytegames.spellshade.Game.Pieces.Common.Piece
 import com.cowbytegames.spellshade.Game.Pieces.*
 import com.cowbytegames.spellshade.R
+import kotlin.math.abs
 import kotlin.math.ceil
 
 class Board(val imageViews: Array<ImageView>) {
@@ -86,47 +88,49 @@ class Board(val imageViews: Array<ImageView>) {
 
                 val piece = board[i][j]
 
+                var hpBarDrawable = R.drawable.hp_0
                 if (piece != null){
                     if (piece.isStunned) {
                         imageView.setBackgroundColor(Color.BLUE)
                     } else {
                         imageView.setBackgroundColor(0)
                     }
+                    hpBarDrawable = getClosestHpBar(piece.health, piece.maxHealth)
                 }
 
                 if (piece is Warrior) {
-                    if (piece.player == 1 && !piece.isEvolved) { imageView.setImageResource(R.drawable.blue_warrior) }
-                    else if (piece.player == 2 && !piece.isEvolved) { imageView.setImageResource(R.drawable.red_warrior) }
-                    else if (piece.player == 1 && piece.isEvolved) { imageView.setImageResource(R.drawable.blue_berseker) }
-                    else if (piece.player == 2 && piece.isEvolved) { imageView.setImageResource(R.drawable.red_berserker) }
+                    if (piece.player == 1 && !piece.isEvolved) { updateImageView(imageView, R.drawable.blue_warrior, hpBarDrawable) }
+                    else if (piece.player == 2 && !piece.isEvolved) { updateImageView(imageView, R.drawable.red_warrior, hpBarDrawable) }
+                    else if (piece.player == 1 && piece.isEvolved) { updateImageView(imageView, R.drawable.blue_berseker, hpBarDrawable) }
+                    else if (piece.player == 2 && piece.isEvolved) { updateImageView(imageView, R.drawable.red_berserker, hpBarDrawable) }
                 }
                 else if (piece is Witch) {
-                    if (piece.player == 1) { imageView.setImageResource(R.drawable.blue_witch) }
-                    else { imageView.setImageResource(R.drawable.red_witch) }
+                    if (piece.player == 1) { updateImageView(imageView, R.drawable.blue_witch, hpBarDrawable) }
+                    else { updateImageView(imageView, R.drawable.red_witch, hpBarDrawable) }
                 }
                 else if (piece is Wizard) {
-                    if (piece.player == 1) { imageView.setImageResource(R.drawable.blue_wizard) }
-                    else { imageView.setImageResource(R.drawable.red_wizard) }
+                    if (piece.player == 1) { updateImageView(imageView, R.drawable.blue_wizard, hpBarDrawable) }
+                    else { updateImageView(imageView, R.drawable.red_wizard, hpBarDrawable) }
                 }
                 else if (piece is Assassin) {
-                    if (piece.player == 1) { imageView.setImageResource(R.drawable.blue_assassin) }
-                    else { imageView.setImageResource(R.drawable.red_assassin) }
+                    if (piece.player == 1) { updateImageView(imageView, R.drawable.blue_assassin, hpBarDrawable) }
+                    else { updateImageView(imageView, R.drawable.red_assassin, hpBarDrawable) }
                 }
                 else if (piece is Archer) {
-                    if (piece.player == 1) { imageView.setImageResource(R.drawable.blue_archer) }
-                    else { imageView.setImageResource(R.drawable.red_archer) }
+                    if (piece.player == 1) { updateImageView(imageView, R.drawable.blue_archer, hpBarDrawable) }
+                    else { updateImageView(imageView, R.drawable.red_archer, hpBarDrawable) }
                 }
                 else if (piece is Healer) {
-                    if (piece.player == 1) { imageView.setImageResource(R.drawable.blue_healer) }
-                    else { imageView.setImageResource(R.drawable.red_healer) }
+                    if (piece.player == 1) { updateImageView(imageView, R.drawable.blue_healer, hpBarDrawable) }
+                    else { updateImageView(imageView, R.drawable.red_healer, hpBarDrawable) }
                 }
                 else if (piece is Tank) {
-                    if (piece.player == 1) { imageView.setImageResource(R.drawable.blue_tank) }
-                    else { imageView.setImageResource(R.drawable.red_tank) }
+                    if (piece.player == 1) { updateImageView(imageView, R.drawable.blue_tank, hpBarDrawable) }
+                    else { updateImageView(imageView, R.drawable.red_tank, hpBarDrawable) }
                 }
                 else if (piece is Commander) {
-                    if (piece.player == 1) { imageView.setImageResource(R.drawable.blue_commander) }
-                    else { imageView.setImageResource(R.drawable.red_commander) }
+                    if (piece.player == 1) { updateImageView(imageView, R.drawable.blue_commander, hpBarDrawable) }
+                    else { updateImageView(imageView, R.drawable.red_commander, hpBarDrawable) }
                 }
             }
         }
@@ -179,4 +183,68 @@ class Board(val imageViews: Array<ImageView>) {
     fun resetActionPoints() {
         actionPoints = 6
     }
+
+    private fun updateImageView(imageView: ImageView, pieceDrawableRes: Int, hpDrawableRes: Int) {
+        val layerDrawable: LayerDrawable?
+
+        val defaultPieceDrawable = imageView.context.getDrawable(pieceDrawableRes)
+        val defaultHpDrawable = imageView.context.getDrawable(hpDrawableRes)
+
+        layerDrawable = LayerDrawable(arrayOf(defaultPieceDrawable, defaultHpDrawable))
+
+        imageView.setImageDrawable(layerDrawable)
+    }
+
+    private fun getClosestHpBar(hp: Int, maxHp: Int): Int {
+        val hpPercentage = (hp.toFloat() / maxHp) * 100
+
+        val closestDrawable = hpBarDrawables.minByOrNull {
+            abs(it.percentage - hpPercentage)
+        }
+
+        return closestDrawable?.drawableRes ?: R.drawable.hp_0
+    }
+
+    data class HpBarDrawable(val percentage: Int, val drawableRes: Int)
+    val hpBarDrawables = listOf(
+        HpBarDrawable(0, R.drawable.hp_0),
+        HpBarDrawable(1, R.drawable.hp_1),
+        HpBarDrawable(4, R.drawable.hp_4),
+        HpBarDrawable(7, R.drawable.hp_7),
+        HpBarDrawable(10, R.drawable.hp_10),
+        HpBarDrawable(13, R.drawable.hp_13),
+        HpBarDrawable(16, R.drawable.hp_16),
+        HpBarDrawable(18, R.drawable.hp_18),
+        HpBarDrawable(21, R.drawable.hp_21),
+        HpBarDrawable(24, R.drawable.hp_24),
+        HpBarDrawable(27, R.drawable.hp_27),
+        HpBarDrawable(30, R.drawable.hp_30),
+        HpBarDrawable(33, R.drawable.hp_33),
+        HpBarDrawable(35, R.drawable.hp_35),
+        HpBarDrawable(38, R.drawable.hp_38),
+        HpBarDrawable(41, R.drawable.hp_41),
+        HpBarDrawable(44, R.drawable.hp_44),
+        HpBarDrawable(47, R.drawable.hp_47),
+        HpBarDrawable(49, R.drawable.hp_49),
+        HpBarDrawable(52, R.drawable.hp_52),
+        HpBarDrawable(55, R.drawable.hp_55),
+        HpBarDrawable(58, R.drawable.hp_58),
+        HpBarDrawable(61, R.drawable.hp_61),
+        HpBarDrawable(63, R.drawable.hp_63),
+        HpBarDrawable(66, R.drawable.hp_66),
+        HpBarDrawable(69, R.drawable.hp_69),
+        HpBarDrawable(72, R.drawable.hp_72),
+        HpBarDrawable(75, R.drawable.hp_75),
+        HpBarDrawable(77, R.drawable.hp_77),
+        HpBarDrawable(80, R.drawable.hp_80),
+        HpBarDrawable(83, R.drawable.hp_83),
+        HpBarDrawable(86, R.drawable.hp_86),
+        HpBarDrawable(89, R.drawable.hp_89),
+        HpBarDrawable(92, R.drawable.hp_92),
+        HpBarDrawable(94, R.drawable.hp_94),
+        HpBarDrawable(97, R.drawable.hp_97),
+        HpBarDrawable(99, R.drawable.hp_99),
+        HpBarDrawable(100, R.drawable.hp_100),
+    )
+
 }

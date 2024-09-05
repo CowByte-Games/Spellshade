@@ -30,7 +30,7 @@ class GameActivity : ComponentActivity() {
     private lateinit var game: Game
     private var selectedPiece: Piece? = null
 
-    private var isProcessingClick: Boolean = false
+    private var isProcessing: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -64,6 +64,7 @@ class GameActivity : ComponentActivity() {
         )
 
         board = Board(imageViews)
+        isProcessing = true
         game = Game(board, narratorTextView, actionPointTextView, this::doneProcessingCallBack)
         renderLayout()
         setPieceOnClick()
@@ -116,8 +117,8 @@ class GameActivity : ComponentActivity() {
             val row = index / 7
             val column = index % 7
             imageView.setOnClickListener {
-                if (!isProcessingClick) {
-                    isProcessingClick = true
+                if (!isProcessing) {
+                    isProcessing = true
 
                     handleClick(row, column)
                 }
@@ -165,13 +166,15 @@ class GameActivity : ComponentActivity() {
         }
 
         actionPointTextView.text = "Action Points: ${board.getActionPoints()}"
-        isProcessingClick = false
+        isProcessing = false
     }
 
     fun onClickEndTurn(view: View) {
-        isProcessingClick = true
-        unselectPiece()
-        game.endTurn()
+        if (!isProcessing) {
+            isProcessing = true
+            unselectPiece()
+            game.endTurn()
+        }
     }
 
     private fun unselectPiece() {
@@ -182,6 +185,6 @@ class GameActivity : ComponentActivity() {
     }
 
     private fun doneProcessingCallBack() {
-        isProcessingClick = false
+        isProcessing = false
     }
 }

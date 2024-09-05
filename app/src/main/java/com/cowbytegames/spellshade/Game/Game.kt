@@ -4,10 +4,13 @@ import android.widget.TextView
 import com.cowbytegames.spellshade.Game.Pieces.*
 import kotlinx.coroutines.*
 
-class Game(val board: Board, val narratorTextView: TextView, val actionPointTextView: TextView, private val onEndTurnComplete: () -> Unit,){
+class Game(val board: Board, val narratorTextView: TextView, val actionPointTextView: TextView, private val doneProcessingCallBack: () -> Unit,){
 
     init {
-        executeNonDamagePassives()
+        executeHealerPassive()
+        executeTankPassive()
+        executeCommanderPassive()
+        doneProcessingCallBack()
     }
 
     fun endTurn() {
@@ -27,7 +30,7 @@ class Game(val board: Board, val narratorTextView: TextView, val actionPointText
 
             board.flipActivePlayer()
             actionPointTextView.text = "Action Points: ${board.getActionPoints()}"
-            onEndTurnComplete()
+            doneProcessingCallBack()
         }
     }
 

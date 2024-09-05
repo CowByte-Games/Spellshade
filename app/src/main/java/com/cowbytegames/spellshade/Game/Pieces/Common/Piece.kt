@@ -31,7 +31,6 @@ interface Piece {
     fun attack(position: Pair<Int, Int>, board: Board) {
         board.get(position.first, position.second)?.takeDamage(damage, board)
         board.useActionPoints(attackCost)
-        board.renderPieces()
     }
     fun availableAttacks(board: Board): ArrayList<Pair<Int, Int>>
     fun heal(heal: Int) {
@@ -54,8 +53,8 @@ interface Piece {
 
         if (health <= 0) {
             board.set(currPos.first, currPos.second, null)
-            board.renderPieces()
         }
+        board.renderPieces()
     }
     fun buff(buffStrength: Int) {
         damage += buffStrength
