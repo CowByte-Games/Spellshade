@@ -21,8 +21,10 @@ class Archer(
     override var stunnedDuration: Int = 0
 
     override var isMovePhase: Boolean = true
+    override var isAttackPhase: Boolean = false
 
     var passiveDamage = 1
+    var hasAttacked = false
 
     override fun move(position: Pair<Int, Int>, board: Board) {
         super.move(position, board)
@@ -60,12 +62,13 @@ class Archer(
     override fun attack(position: Pair<Int, Int>, board: Board) {
         super.attack(position, board)
         isMovePhase = true
+        hasAttacked = true
     }
 
     override fun availableAttacks(board: Board): ArrayList<Pair<Int, Int>> {
         val squares : ArrayList<Pair<Int, Int>> = arrayListOf()
 
-        if (!isTurn(board) || isMovePhase || board.getActionPoints() < attackCost || isStunned) {
+        if (!isTurn(board) || hasAttacked || isMovePhase || board.getActionPoints() < attackCost || isStunned) {
             return squares
         }
 

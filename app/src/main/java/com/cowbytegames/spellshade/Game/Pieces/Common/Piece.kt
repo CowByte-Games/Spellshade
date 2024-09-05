@@ -20,17 +20,20 @@ interface Piece {
     var currPos: Pair<Int,Int>
 
     var isMovePhase: Boolean
+    var isAttackPhase: Boolean
 
     fun move(position: Pair<Int, Int>, board: Board) {
         board.set(currPos.first, currPos.second, null)
         currPos = position
         board.set(currPos.first, currPos.second, this)
         isMovePhase = false
+        isAttackPhase = true
     }
     fun availableMoves(board: Board): ArrayList<Pair<Int, Int>>
     fun attack(position: Pair<Int, Int>, board: Board) {
         board.get(position.first, position.second)?.takeDamage(damage, board)
         board.useActionPoints(attackCost)
+        isAttackPhase = false
     }
     fun availableAttacks(board: Board): ArrayList<Pair<Int, Int>>
     fun heal(heal: Int) {

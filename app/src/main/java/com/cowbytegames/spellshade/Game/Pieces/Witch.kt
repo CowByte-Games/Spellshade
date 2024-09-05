@@ -21,6 +21,7 @@ class Witch(
     override var stunnedDuration: Int = 0
 
     override var isMovePhase: Boolean = true
+    override var isAttackPhase: Boolean = false
 
     override fun move(position: Pair<Int, Int>, board: Board) {
         super.move(position, board)

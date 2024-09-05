@@ -21,6 +21,7 @@ class Tank(
     override var stunnedDuration: Int = 0
 
     override var isMovePhase: Boolean = true
+    override var isAttackPhase: Boolean = false
 
     var shieldStrength: Int = 1
 

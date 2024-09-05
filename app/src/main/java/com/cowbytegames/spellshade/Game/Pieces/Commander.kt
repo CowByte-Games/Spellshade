@@ -21,6 +21,7 @@ class Commander(
     override var stunnedDuration: Int = 0
 
     override var isMovePhase: Boolean = true
+    override var isAttackPhase: Boolean = false
 
     var buffStrength = 1
 

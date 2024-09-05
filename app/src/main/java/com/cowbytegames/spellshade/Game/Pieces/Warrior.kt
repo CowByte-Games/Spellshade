@@ -21,6 +21,7 @@ class Warrior(
     override var stunnedDuration: Int = 0
 
     override var isMovePhase: Boolean = true
+    override var isAttackPhase: Boolean = false
 
     var isEvolved = false
 
@@ -97,6 +98,8 @@ class Warrior(
             }
             board.renderPieces()
             board.useActionPoints(attackCost)
+            
+            isAttackPhase = false
         }
     }
 

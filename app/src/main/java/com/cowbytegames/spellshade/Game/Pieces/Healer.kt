@@ -22,6 +22,7 @@ class Healer(
     override var stunnedDuration: Int = 0
 
     override var isMovePhase: Boolean = true
+    override var isAttackPhase: Boolean = false
 
     var healStrength: Int = 1
 

@@ -137,7 +137,7 @@ class GameActivity : ComponentActivity() {
                     selectedPiece!!.move(Pair(row, column), board)
                     board.renderPieces()
                 }
-            } else {
+            } else if (selectedPiece!!.isAttackPhase){
                 val availableAttacks = selectedPiece!!.availableAttacks(board)
 
                 if (availableAttacks.contains(Pair(row, column))) {
@@ -152,7 +152,7 @@ class GameActivity : ComponentActivity() {
             if (piece.isMovePhase) {
                 val availableMoves = piece.availableMoves(board)
                 board.setAvailableMovesRender(availableMoves)
-            } else {
+            } else if (piece.isAttackPhase) {
                 val availableAttacks = piece.availableAttacks(board)
                 board.setAvailableAttacksRender(availableAttacks)
             }
