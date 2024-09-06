@@ -129,12 +129,15 @@ class Game(val board: Board, val narratorTextView: TextView, val actionPointText
         GlobalScope.launch(Dispatchers.Main) {
             narratorTextView.text = "Healers healing allies"
             executeHealerPassive()
+            board.renderPieces()
             delay(1000)
             narratorTextView.text = "Tanks shielding allies"
             executeTankPassive()
+            board.renderPieces()
             delay(1000)
             narratorTextView.text = "Commander buffing allies"
             executeCommanderPassive()
+            board.renderPieces()
             delay(1000)
             narratorTextView.text = ""
         }

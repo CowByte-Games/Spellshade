@@ -36,9 +36,10 @@ interface Piece {
         isAttackPhase = false
     }
     fun availableAttacks(board: Board): ArrayList<Pair<Int, Int>>
-    fun heal(heal: Int) {
+    fun heal(heal: Int, board: Board) {
         health += heal
         health = minOf(health, maxHealth)
+        board.renderPieces()
     }
     fun shield(position: Pair<Int, Int>)
     fun stun() {

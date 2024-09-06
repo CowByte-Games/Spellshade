@@ -55,7 +55,7 @@ class Healer(
             for (j in 0 until 7) {
                 val piece = board.get(i, j)
                 if (piece != null && piece.player == this.player) {
-                    piece.heal(healStrength)
+                    piece.heal(healStrength, board)
                 }
             }
         }
@@ -94,7 +94,7 @@ class Healer(
             for (j in currPos.second-1..currPos.second+1) {
                 val piece = board.get(i, j)
                 if (piece != null && piece.player == this.player) {
-                    piece.heal(healStrength)
+                    piece.heal(healStrength, board)
                 }
             }
         }
