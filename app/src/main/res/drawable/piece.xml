@@ -1,9 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
-
     <item android:id="@+id/icon_piece" android:drawable="@drawable/blue_archer"/>
-
-    <!-- Second layer (dynamic) -->
     <item android:id="@+id/icon_hp" android:drawable="@drawable/hp_0"/>
-
 </layer-list>

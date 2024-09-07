@@ -11,6 +11,7 @@ import androidx.activity.ComponentActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
 import androidx.gridlayout.widget.GridLayout
+import com.cowbytegames.spellshade.Game.Animator
 import com.cowbytegames.spellshade.Game.Board
 import com.cowbytegames.spellshade.Game.Game
 import com.cowbytegames.spellshade.Game.Pieces.Common.Piece
@@ -28,6 +29,7 @@ class GameActivity : ComponentActivity() {
 
     private lateinit var board: Board
     private lateinit var game: Game
+    private lateinit var animator: Animator
     private var selectedPiece: Piece? = null
 
     private var isProcessing: Boolean = false
@@ -64,6 +66,10 @@ class GameActivity : ComponentActivity() {
         )
 
         board = Board(imageViews)
+        animator = Animator(imageViews, this)
+
+        animator.animateHeal(1,1)
+
         isProcessing = true
         game = Game(board, narratorTextView, actionPointTextView, this::doneProcessingCallBack)
         renderLayout()
