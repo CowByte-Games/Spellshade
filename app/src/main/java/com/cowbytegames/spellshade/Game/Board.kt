@@ -11,7 +11,7 @@ import com.cowbytegames.spellshade.R
 import kotlin.math.abs
 import kotlin.math.ceil
 
-class Board(val imageViews: Array<ImageView>) {
+class Board(val imageViews: Array<ImageView>, val animator: Animator) {
     val board: Array<Array<Piece?>> =  Array(7) { arrayOfNulls<Piece>(7) }
     private var activePlayer = 1
     private var actionPoints = 4
@@ -182,6 +182,10 @@ class Board(val imageViews: Array<ImageView>) {
     }
     fun resetActionPoints() {
         actionPoints = 6
+    }
+
+    fun animateHeal(row: Int, col: Int) {
+        animator.animateHeal(row,col)
     }
 
     private fun updateImageView(imageView: ImageView, pieceDrawableRes: Int, hpDrawableRes: Int) {

@@ -98,5 +98,7 @@ class Healer(
                 }
             }
         }
+
+        board.animateHeal(currPos.first, currPos.second)
     }
 }

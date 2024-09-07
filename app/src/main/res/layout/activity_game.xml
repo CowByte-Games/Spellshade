@@ -572,4 +572,13 @@
         app:layout_constraintEnd_toStartOf="@+id/button_endTurn"
         app:layout_constraintTop_toTopOf="@+id/button_endTurn" />
 
+    <TextView
+        android:id="@+id/textView_debug"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView_narrator" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -26,6 +26,7 @@ class GameActivity : ComponentActivity() {
     private lateinit var boardView: ImageView
     private lateinit var narratorTextView: TextView
     private lateinit var actionPointTextView: TextView
+    private lateinit var debugTextView: TextView
 
     private lateinit var board: Board
     private lateinit var game: Game
@@ -37,6 +38,8 @@ class GameActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game)
+
+        debugTextView = findViewById(R.id.textView_debug)
 
         pieceNameTextView = findViewById(R.id.textView_pieceName)
         pieceStatsTextView = findViewById(R.id.textView_pieceStats)
@@ -65,11 +68,8 @@ class GameActivity : ComponentActivity() {
             findViewById(R.id.square_66)
         )
 
-        board = Board(imageViews)
-        animator = Animator(imageViews, this)
-
-        animator.animateHeal(1,1)
-
+        animator = Animator(this, debugTextView)
+        board = Board(imageViews, animator)
         isProcessing = true
         game = Game(board, narratorTextView, actionPointTextView, this::doneProcessingCallBack)
         renderLayout()
